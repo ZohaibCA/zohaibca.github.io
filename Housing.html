@@ -28,7 +28,7 @@
 							<li><a href="index.html">back to Projects</a></li>
 							<li><a href="generic.html"> Generic Page </a></li>
 							<li class=""><a href="elements.html"> Elements Reference </a></li>
-						</ul>
+						</ul> 
 						<ul class="icons">
 							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
 							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
@@ -43,25 +43,90 @@
 						<!-- Post -->
 							<section class="post">
 								<header class="major">
-									<h1>Elements Reference</h1>
+									<h2> Housing Price Prediction </h2>
 								</header>
 
 								<!-- Text stuff -->
-									<h2>Text</h2>
-									<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
-									This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
-									This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>.
-									Finally, this is a <a href="#">link</a>.</p>
-									<hr />
+								<!-- <header> -->
+									<p> Estimating a house price in an area is area is easy if you have the
+									a large data set of historical prices against a myriad of features (square footage, locality, 
+									number of rooms, etc.). 
+								    Trouble is  such data is not generally available to everybody. <br/>
+									But what is available publically is the census data...with limited attribute, mostly relating 
+									to the locality/district rather than of the house. 
 
-									<header>
-										<h2>Heading with a Subtitle</h2>
-										<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
-									</header>
-									<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
-									<header>
+							 </p>
+								<!-- </header> -->
+
+									<h2>Problem Statement </h2>
+									<p><b> Given the following set of attribute of the district, can we predict housing 
+										price in the area accurately?  </b>  </p>
+										<ol>
+											<li>Median income in the district </li>
+											<li>Median house age </li>
+											<li>Total number of rooms in the district </li>
+											<li>Total number of bedrooms in the district</li>
+											<li>District population,
+											<li>Total district house occupancy</li>
+											<li>District latitude</li>
+											<li>District longitude</li>
+											<li>Ocean proximity </li>
+										</ol>
 										
+										<h2> Data set </h2>
+										 California housing data set containing 1990 census data <br/>
+										 
+											Link: <a href="https://github.com/ageron/handson-ml2/tree/master/datasets/housing" target="_blank">Dataset</a> 
+											<br/>
+										
+									</header>
 
+									<header>
+										<h2>Hypotheses</h2>
+										<ol> <li> Median income of the district and its proximity to ocean must have a positive influence on the house price </li> 
+											 <li> Median house age should be correlated negatively to the median price  </li>
+											 <li> Some features must be highly correlated to each other such as total rooms vs. total bedrooms </li> 
+											 <li> Overall, we should be able to reasonably estimte the median house price, though not very accurately due to absence of key info as size of houses, crime rate, etc.  </li> 
+																					 </ol>
+									</header>
+									
+									<header>
+										<h2>Concept used </h2>
+										&bull;  Early data split &bull; Exploratory Data Analysis &bull; One Hot encoding &bull; Data Wrangling &bull; Feature Creation  &bull; Feature scaling 
+										
+									</header>
+									<hr />
+									<!-- <header> -->
+										<h1>Data Analysis</h1>
+
+										
+											ssdfsdf
+										
+										<p> <img src="images/housing/Correlation plot 1_edit.png" alt="" /> 
+										
+											<img src="images/housing/top5corr.png" alt="" />
+
+											<img src="images/housing/top5corrNew.png" alt="" />
+
+										</p>
+
+									<!-- </header> -->
+									<hr />
+									
+										<h1>Results</h1>
+
+										<h2>Baseline model</h2>
+											
+										We first need to establish a baseline model of prediction. Multivariate linear regression is a common choice. 
+										
+										<br/> 										<br/>
+										<p> <img src="images/housing/output.png" alt="" /> 
+										
+											<img src="images/housing/output2.png" alt="" />
+
+										</p>
+
+									
 									<hr />
 
 								<!-- Lists -->
