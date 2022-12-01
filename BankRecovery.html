@@ -1,0 +1,290 @@
+<!DOCTYPE HTML>
+<!--
+	Zohaib Aftab, Data Scientist
+	zohaibdr.github.io | 
+	To showcase my projects
+-->
+<html>
+	<head>
+		<title>Project: Housing price conundrum</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Home</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">back to Projects</a></li>
+							<li><a href="generic.html"> Generic Page </a></li>
+							<li class=""><a href="elements.html"> Elements Reference </a></li>
+						</ul> 
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+		<section class="post">
+			<header class="major">
+				<h2> Bank Loan Recovery Model </h2>
+			</header>
+
+			<!-- Text stuff -->
+			<!-- <header> -->
+				<h2>Context</h2>
+				<p> After a debt has been legally declared "uncollectable" by a bank, the account is considered "charged-off." But that doesn't mean the bank walks away from the debt. They still want to collect some of the money they are owed using internal collections staff or outside collection agencies. The bank will score the account to assess the expected recovery amount, that is, the expected amount that the bank may be able to receive from the customer in the future. This amount is a function of the probability of the customer paying, the total debt, and other factors that impact the ability and willingness to pay.</p> 
+
+				<h3>Recovery strategies and their cost </h3>
+				<p>Banks implement different recovery strategies at different thresholds ($1000, $2000, etc.) where the greater the expected recovery amount, the more effort the bank puts into contacting the customer. For higher recovery strategies, the bank incurs more costs as they leverage human resources in more efforts to obtain payments. Suppose, <strong>each additional level of recovery strategy requires an additional $50 per customer</strong> so that customers in the Recovery Strategy Level 1 cost the company $50 more than those in Level 0. Customers in Level 2 cost $50 more than those in Level 1, and so on. </p> 
+
+			</p>
+			<!-- </header> -->
+
+			<h2>The Big Question </h2>
+			<p> <strong>Does the extra amount that is recovered at the higher strategy level exceed the extra $50 in costs?</strong> 
+				
+				In other words, was there a jump (also called a <strong>"discontinuity"</strong>) of more than $50 in the amount recovered at the higher strategy level?  </p>
+			
+				<h2> Data set </h2>
+					Historical data of expected and actual loan recoveries (1882 entries) against the recovery strategy and a few other factors: :
+					<p> <img src="images\bank_recovery\datahead.png" alt="" />  </p>
+					
+					Complete data available on my  <a href="" target="_blank">Github</a> 
+
+			<p>Here's a quick summary of the Levels and thresholds:</p>
+			<ul>
+			<li><strong>Level 0:</strong> Expected recovery amounts &gt;$0 and &lt;=$1000</li>
+			<li><strong>Level 1:</strong> Expected recovery amounts &gt;$1000 and &lt;=$2000</li>
+			<li><strong>Level 2:</strong> Expected recovery amounts &gt;$2000 and &lt;=$3000</li>
+			<li><strong>Level 3:</strong> Expected recovery amounts &gt;$3000 and &lt;=$5000</li>
+			<li><strong>Level 4:</strong> Expected recovery amounts &gt;$5000 </li>
+			</ul>
+
+			</header>
+
+				<header>
+					<h2> Major Concept </h2>
+					&bull;  <strong>Regression Discontinuity Design (RDD):</strong> 
+				<p> A method which has its roots in education research for establishing causal inference. It is a quasi-experimental impact evaluation method used to evaluate programs that have a <strong>cutoff point </strong> determining who is eligible to participate. </p>
+											
+					<p> <img src="images\bank_recovery\RDD model.jpg" alt="" />  </p>
+						
+					<blockquote>  <strong>Can we find this sort of discontinuity at key cut-off points is the goal of this project. </strong> </blockquote> 
+					</p>
+					
+				</header>
+				<hr />
+				<!-- <header> -->
+					<h1>Data Analysis</h1>
+
+					<p><strong>To answer the big question </strong>: We will first exclude the effect of other variables on the expected recovery amount before concentrating on the effect of recovery strategy.</p> 
+					For example, does the customer age show a jump (discontinuity) at the $1000 threshold or does that age vary smoothly? 
+					Plotting a scatter plot to observe it visually, 
+
+					<p> <img src="images\bank_recovery\scatterAge.png" alt="" />  </p>
+					
+					There certainly is a correlation (Pearson's r: 0.79), but we do not see a visible JUMP at $1000 on the x-axis (first vertical dotted line). 
+
+					<p> In order to make sure that age is similar above and below the $1000 recovery threshold, a statistical analysis is warranted in the vicinity of this threshold (say $900 - $1100) range. 
+					</p>
+					
+					
+<pre>
+	<code> 
+# Import stats module
+from scipy import stats
+# Compute average age just below and above the threshold
+era_900_1100 = df.loc[(df['expected_recovery_amount']<1100) & 
+						(df['expected_recovery_amount']>=900)]
+print(era_900_1100.head())
+by_recovery_strategy = era_900_1100.groupby(['recovery_strategy'])
+by_recovery_strategy['age'].describe().unstack()
+
+print(by_recovery_strategy['age'].describe().unstack())
+
+# Perform Kruskal-Wallis test 
+Level_0_age = era_900_1100.loc[df['recovery_strategy']=="Level 0 Recovery"]['age']
+Level_1_age = era_900_1100.loc[df['recovery_strategy']=="Level 1 Recovery"]['age']
+stats.kruskal(Level_0_age,Level_1_age) 
+</code>
+</pre>
+
+The <strong>Krushkal-Wallis H test</strong> (aka one-way ANOVA on ranks, a non-parametric test) elicits that there is <strong>no statistically significant difference</strong> in age in the expected recovery amounts of just below and above the $1000 threshold (H=3.45, p = .06). 
+
+<p> A similar test in performed on <strong>Gender</strong> by first creating a gender-wise cross-tabulation. Since Gender is a categorical variable, we can perform the <strong>Chi-squre test</strong>. 
+
+</p>
+
+<pre>
+<code>
+crosstab = pd.crosstab(df.loc[(df['expected_recovery_amount']<1100) & 
+(df['expected_recovery_amount']>=900)]['recovery_strategy'], 
+df['sex'])
+print(crosstab)
+# Chi-square test
+chi2_stat, p_val, dof, ex = stats.chi2_contingency(crosstab)
+print(p_val)
+
+</code>
+
+</pre>
+
+<blockquote> <strong>Same tests are repeated at other key thresholds ($2000,$3000 and $5000) with similar results of failing to reject the null hypothesis (no age and gender effect observed)</strong>. </blockquote> 
+
+<hr />
+
+<h2> Back to business </h2>
+
+					
+			Now that we are confident that age and gender has no significant effect on recovery, we can move to move to key variable of interest, the <strong> 'actual_recovery_amount'. </strong> <br>
+			A first step in examining the relationship between the actual recovery amount and the expected recovery amount is to develop a scatter plot. 
+
+
+<p>	<img src="images\bank_recovery\scatterActual.png" alt="" /> </p>
+			Since the cost of change in recovery strategy is only $50, it is hard to notice such small jump (if any) on this plot at key thresholds ($1000, $2000, etc). But we need measure the effect as well. For this, <strong>Regression Discontinuity Design (RDD)</strong> is a suitable option. <br>
+			
+			For this, we first add an indicator of the true threshold to the model (starting at $1000) which represents whether or not the expected recovery amount is greater than the threshold (say 0 and 1). 
+		
+<strong>			When we add the true threshold to the model, the regression coefficient for the true threshold represents the additional amount recovered due to the higher recovery strategy.
+</strong>
+			
+<blockquote class="blue-edge"> If the higher recovery strategy helped recovery more money, then the regression coefficient of the true threshold will be greater than zero.  If the higher recovery strategy did not help recovery more money, then the regression coefficient will not be statistically significant. </blockquote> 
+
+<pre> 
+<code>
+	# Create indicator (0 or 1) for expected recovery amount >= $1000
+	df['indicator_1000'] = np.where(df['expected_recovery_amount']<1000, 0, 1)
+	era_900_1100 = df.loc[(df['expected_recovery_amount']<1100) & 
+						  (df['expected_recovery_amount']>=900)]
+	
+	# Define X and y
+	X = era_900_1100[['expected_recovery_amount','indicator_1000']]
+	y = era_900_1100['actual_recovery_amount']
+	X = sm.add_constant(X)
+	
+	# Build linear regression model
+	model = sm.OLS(y,X).fit()
+	
+	# Print the model summary
+	model.summary()
+
+</code>
+
+</pre>
+
+
+
+		<hr />
+									
+		<h1>Results</h1>
+		The result of 
+
+		<p>	<img src="images\bank_recovery\result1.png" alt="" /> </p>
+
+<strong>		The regression coefficient for the true threshold was statistically significant with an estimated impact of around $278.  This is much larger than the $50 per customer needed to run this higher recovery strategy.
+</strong>
+Similar analysis is performed for all thresholds with the results summarized in the table below: <br>
+
+<p>	<img src="images\bank_recovery\result2.png" alt="" /> </p>
+
+
+		<h1>Conclusion</h1>
+		<div class="box">
+To conclude, it is worth chasing the smaller loans, by changing the strategy at each of the first three strategy levels. However, for the loans greater than $5000, it is not worth investing in Level 4 strategy. 
+</div>
+
+
+
+
+
+									<hr />
+
+
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section>
+							<form method="post" action="#">
+								<div class="fields">
+									<div class="field">
+										<label for="name">Name</label>
+										<input type="text" name="name" id="name" />
+									</div>
+									<div class="field">
+										<label for="email">Email</label>
+										<input type="text" name="email" id="email" />
+									</div>
+									<div class="field">
+										<label for="message">Message</label>
+										<textarea name="message" id="message" rows="3"></textarea>
+									</div>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Send Message" /></li>
+								</ul>
+							</form>
+						</section>
+						<section class="split contact">
+							<section class="alt">
+								<h3>Address</h3>
+								<p>1234 Somewhere Road #87257<br />
+								Nashville, TN 00000-0000</p>
+							</section>
+							<section>
+								<h3>Phone</h3>
+								<p><a href="#">(000) 000-0000</a></p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p><a href="#">info@untitled.tld</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

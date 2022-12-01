@@ -248,7 +248,7 @@ input, select, textarea {
 		font-family: "Courier New", monospace;
 		font-size: 0.9rem;
 		margin: 0 0.25rem;
-		padding: 0.25rem 0.65rem;
+		padding: 0.25rem 0.25rem;
 	}
 
 	pre {
@@ -314,7 +314,7 @@ input, select, textarea {
 	}
 
 	code {
-		background: rgba(220, 220, 220, 0.25);
+		background: rgba(184, 222, 235, 0.816);
 		border-color: #eeeeee;
 	}
 

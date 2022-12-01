@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Project: Housing price conundrum</title>
+		<title>Project: Housing price conundrum </title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -41,92 +41,157 @@
 					<div id="main">
 
 						<!-- Post -->
-							<section class="post">
-								<header class="major">
-									<h2> Housing Price Prediction </h2>
-								</header>
+		<section class="post">
+			<header class="major">
+				<h2> Housing Price Prediction </h2>
+			</header>
 
-								<!-- Text stuff -->
-								<!-- <header> -->
-									<p> Estimating a house price in an area is area is easy if you have the
-									a large data set of historical prices against a myriad of features (square footage, locality, 
-									number of rooms, etc.). 
-								    Trouble is  such data is not generally available to everybody. <br/>
-									But what is available publically is the census data...with limited attribute, mostly relating 
-									to the locality/district rather than of the house. 
+			<!-- Text stuff -->
+			<!-- <header> -->
+				<h2>Context</h2>
+				<p> Estimating a house price in an area is easy if you have the
+				a large data set of historical prices against a myriad of features (square footage, locality, 
+				number of rooms, etc.). 
+				Trouble is  such data is not generally available to everybody. <br/>
+				But what is available publically is the census data...with only a limited set attribute, relating to the locality/district. 
 
-							 </p>
-								<!-- </header> -->
+			</p>
+			<!-- </header> -->
 
-									<h2>Problem Statement </h2>
-									<p><b> Given the following set of attribute of the district, can we predict housing 
-										price in the area accurately?  </b>  </p>
-										<ol>
-											<li>Median income in the district </li>
-											<li>Median house age </li>
-											<li>Total number of rooms in the district </li>
-											<li>Total number of bedrooms in the district</li>
-											<li>District population,
-											<li>Total district house occupancy</li>
-											<li>District latitude</li>
-											<li>District longitude</li>
-											<li>Ocean proximity </li>
-										</ol>
+				<h2>Problem Statement </h2>
+				<p><b> Given the following set of attribute of the district, can we predict house price in the area accurately?  </b>  </p>
+					<ol> 
+						<li>Median income in the district </li>
+						<li>Median house age </li>
+						<li>Total number of rooms in the district </li>
+						<li>Total number of bedrooms in the district</li>
+						<li>District population,
+						<li>Total district house occupancy</li>
+						<li>District latitude</li>
+						<li>District longitude</li>
+						<li>Ocean proximity </li>
+					</ol>
+					
+					<h2> Data set </h2>
+						California housing data set containing 1990 census data <br/>
+						
+						Link to <a href="https://github.com/ageron/handson-ml2/tree/master/datasets/housing" target="_blank">Dataset</a> 
+						<br/>
+					
+				</header>
+
+				<header>
+					<h2>Hypotheses</h2>
+					<ol> <li> Median income of the district and its proximity to ocean must have a positive influence on the house price </li> 
+							<li> Median house age should be correlated negatively to the median price  </li>
+							<li> Some features must be highly correlated to each other such as total rooms vs. total bedrooms </li> 
+							<li> Overall, we should be able to reasonably estimte the median house price, though not very accurately due to absence of key info as size of individual houses, crime rate, etc.  </li> 
+																	</ol>
+				</header>
+				
+				<header>
+					<h2>Concept used </h2>
+					&bull;  Early data split &bull; Exploratory Data Analysis &bull; One Hot encoding &bull; Data Wrangling &bull; Feature Creation  &bull; Feature scaling 
+					
+				</header>
+				<hr />
+				<!-- <header> -->
+					<h1>Data Analysis</h1>
+
+					
+						An Exploratory data analysis reveals the distribution of data and the interrelation between various attributes. To avoid data leakage, the data is split into train/validation/test sets even before EDA. 
+						<br> 
+						In the data set, the features of 'total_bedrooms', 'population' and 'households' are highly correlated as indicated in the figure.
+						This information allows reducing the number of features later on by eliminating some of the redundant features! <br>
+
+					
+					<p> <img src="images/housing/Correlation plot 1_edit.png" alt="" />  </p>
+						
+					Next, it is useful to know which features are strongly correlated with the <strong> Target variable </strong>. For this, we can create a table below: 
+
+					<p> <img src="images/housing/top5corr.png" alt="" /> </p>
+					
+					Turns out, the Median income is the single most important determinant of house price. Moreover, the being away from the ocean (feature 'OceanIn') is negatively correlated, which make sense. <br>
+					
+					<h2> Introducing custom features </h2> 
+					In order to improve the accuracy of machine learning models, a big part of modeling consists of creating new, more relevant features from raw data. For example, total number of rooms in a block are not useful attributes in determining house value unless we know the total housholds there are in that block. Similarly, population per house is more logical than total block population. <br>
+					We introduce two features namely <strong> rooms_per_household </strong> and <strong> popolation_per_household </strong> and see their correlation with the target. 
+<pre>
+	<code> 
+#create new variables first for new attributes 
+NewAttrib1 = Xy_train_reduced['total_rooms']/Xy_train_reduced['households']
+NewAttrib2 = Xy_train_reduced['population']/Xy_train_reduced['households'] 
+
+#creating new variables allows inserting them at the specified location in the our </br> dataframe like here, just before last column (target variable) 
+Xy_train_reduced.insert(loc = len(Xy_train_reduced.columns.values)-1, 
+			column = 'rooms_per_household',   value=NewAttrib1)
+Xy_train_reduced.insert(loc = len(Xy_train_reduced.columns.values)-1, 
+			column = 'popolation_per_household', value=NewAttrib2)
+
+	</code>
+</pre>
+It gives: 
 										
-										<h2> Data set </h2>
-										 California housing data set containing 1990 census data <br/>
-										 
-											Link: <a href="https://github.com/ageron/handson-ml2/tree/master/datasets/housing" target="_blank">Dataset</a> 
-											<br/>
-										
-									</header>
-
-									<header>
-										<h2>Hypotheses</h2>
-										<ol> <li> Median income of the district and its proximity to ocean must have a positive influence on the house price </li> 
-											 <li> Median house age should be correlated negatively to the median price  </li>
-											 <li> Some features must be highly correlated to each other such as total rooms vs. total bedrooms </li> 
-											 <li> Overall, we should be able to reasonably estimte the median house price, though not very accurately due to absence of key info as size of houses, crime rate, etc.  </li> 
-																					 </ol>
-									</header>
-									
-									<header>
-										<h2>Concept used </h2>
-										&bull;  Early data split &bull; Exploratory Data Analysis &bull; One Hot encoding &bull; Data Wrangling &bull; Feature Creation  &bull; Feature scaling 
-										
-									</header>
-									<hr />
-									<!-- <header> -->
-										<h1>Data Analysis</h1>
-
-										
-											ssdfsdf
-										
-										<p> <img src="images/housing/Correlation plot 1_edit.png" alt="" /> 
-										
-											<img src="images/housing/top5corr.png" alt="" />
-
-											<img src="images/housing/top5corrNew.png" alt="" />
-
-										</p>
+<p>	<img src="images/housing/top5corrNew.png" alt="" /> </p>
+										Clearly, they have some correlation, if not very strong, to the house price. They will likely improve prediction accuracy. 
 
 									<!-- </header> -->
 									<hr />
 									
-										<h1>Results</h1>
+		<h1>Results</h1>
+		[Prior to producing results, the features are scaled using a Standard Scalar. Details in the GITHUB repo ] <br>
 
-										<h2>Baseline model</h2>
-											
-										We first need to establish a baseline model of prediction. Multivariate linear regression is a common choice. 
-										
-										<br/> 										<br/>
-										<p> <img src="images/housing/output.png" alt="" /> 
-										
-											<img src="images/housing/output2.png" alt="" />
 
-										</p>
+<pre>
+	<code>
+from sklearn.preprocessing import StandardScaler
 
-									
+scaler = StandardScaler()
+scaler.fit(X_train_reduced)         # fit only on training data
+
+X_train_scaled = scaler.transform(X_train_reduced)
+
+# Now apply same transformation to validation and test sets
+X_test_scaled  = scaler.transform(X_test_reduced)  
+X_valid_scaled  = scaler.transform(X_valid_reduced)  
+	</code>
+</pre>
+
+		<h2>Establishing baseline </h2>
+			
+		We first need to establish a baseline model of prediction. Multivariate linear regression is a common choice. <br>
+		
+		<br/> 
+		<blockquote> 
+		<strong> The cross validated R2 score on the training set is 0.62. The R2 score on test set is 0.63. </strong> <br> </blockquote>
+		Below is the regression plot, only for the test set: 
+
+		<p> <img src="images/housing/regressPlot.png" alt="" />
+		
+		<br> 
+		Below is a residual and QQ-plot for both training and test sets. 
+
+		<p> <img src="images/housing/output.png" alt="" /> </p>
+		<strong> The baseline model predicts house value with a typical error of US$70k. </strong>
+
+
+
+		<h2> Improving prediction  </h2>										
+		In order to improve upon the prediction accuracy, we could try to optimize hyper-parameters using the SGD regressor (scikit-learn). However, the strategy here is to first find the most powerful algorithm. <br>
+		
+		Turning to tree-based and/or ensemble methods, below are the train and test accuracies for 5 popular algorithms:
+
+		<span class="image fit"> <img src="images/housing/treeR2_unoptim.png" alt="" /></span> </p>
+		<blockquote> 
+		All models are overfitting the data at default values which in Normal. 
+		</blockquote>
+		We need to tune the model by adjusting the hyper-parameters in a systemic way and find the OPTIMAL model. 
+		AdaBoost has the worst result so can be skipped for tuning.
+
+		<h2> Model Tuning </h2> 
+		Using 'RandomSearchCV', the best model obtained is: 
+
+
 									<hr />
 
 								<!-- Lists -->
