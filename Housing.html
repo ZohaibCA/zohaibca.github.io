@@ -46,8 +46,12 @@
 				<h2> Housing Price Prediction </h2>
 			</header>
 
+			Tags: 
+				Exploratory Data Analysis &bull; One Hot encoding &bull; Data Wrangling &bull; Feature Creation  &bull; Feature scaling 
+				<hr />
 			<!-- Text stuff -->
 			<!-- <header> -->
+
 				<h2>Context</h2>
 				<p> Estimating a house price in an area is easy if you have the
 				a large data set of historical prices against a myriad of features (square footage, locality, 
@@ -89,11 +93,7 @@
 																	</ol>
 				</header>
 				
-				<header>
-					<h2>Concept used </h2>
-					&bull;  Early data split &bull; Exploratory Data Analysis &bull; One Hot encoding &bull; Data Wrangling &bull; Feature Creation  &bull; Feature scaling 
-					
-				</header>
+
 				<hr />
 				<!-- <header> -->
 					<h1>Data Analysis</h1>
@@ -132,15 +132,14 @@ Xy_train_reduced.insert(loc = len(Xy_train_reduced.columns.values)-1,
 </pre>
 It gives: 
 										
-<p>	<img src="images/housing/top5corrNew.png" alt="" /> </p>
-										Clearly, they have some correlation, if not very strong, to the house price. They will likely improve prediction accuracy. 
+<p>  <img src="images/housing/top5corrNew.png" alt="" />	 </p>
+			Clearly, they have some correlation, if not very strong, to the house price. They will likely improve prediction accuracy. 
 
 									<!-- </header> -->
 									<hr />
 									
 		<h1>Results</h1>
 		[Prior to producing results, the features are scaled using a Standard Scalar. Details in the GITHUB repo ] <br>
-
 
 <pre>
 	<code>
@@ -166,22 +165,19 @@ X_valid_scaled  = scaler.transform(X_valid_reduced)
 		<strong> The cross validated R2 score on the training set is 0.62. The R2 score on test set is 0.63. </strong> <br> </blockquote>
 		Below is the regression plot, only for the test set: 
 
-		<p> <img src="images/housing/regressPlot.png" alt="" />
-		
+		 <img src="images/housing/regressPlot.png" alt="" />
 		<br> 
 		Below is a residual and QQ-plot for both training and test sets. 
 
 		<p> <img src="images/housing/output.png" alt="" /> </p>
 		<strong> The baseline model predicts house value with a typical error of US$70k. </strong>
 
-
-
 		<h2> Improving prediction  </h2>										
 		In order to improve upon the prediction accuracy, we could try to optimize hyper-parameters using the SGD regressor (scikit-learn). However, the strategy here is to first find the most powerful algorithm. <br>
 		
 		Turning to tree-based and/or ensemble methods, below are the train and test accuracies for 5 popular algorithms:
 
-		<span class="image fit"> <img src="images/housing/treeR2_unoptim.png" alt="" /></span> </p>
+		<span class="image fit"> <img src="images/housing/treeR2_unoptim.png" alt="" /> </span>
 		<blockquote> 
 		All models are overfitting the data at default values which in Normal. 
 		</blockquote>
@@ -195,56 +191,6 @@ X_valid_scaled  = scaler.transform(X_valid_reduced)
 									<hr />
 
 								<!-- Lists -->
-									<h2>Lists</h2>
-									<div class="row">
-										<div class="col-6 col-12-small">
-
-											<h3>Unordered</h3>
-											<ul>
-												<li>Dolor pulvinar etiam.</li>
-												<li>Sagittis lorem eleifend.</li>
-												<li>Felis feugiat dolore viverra.</li>
-												<li>Dolor pulvinar etiam.</li>
-											</ul>
-
-											<h3>Alternate</h3>
-											<ul class="alt">
-												<li>Dolor pulvinar etiam etiam.</li>
-												<li>Sagittis adipiscing eleifend.</li>
-												<li>Felis enim dolore viverra.</li>
-												<li>Dolor pulvinar etiam etiam.</li>
-											</ul>
-
-										</div>
-										<div class="col-6 col-12-small">
-
-											<h3>Ordered</h3>
-											<ol>
-												<li>Dolor pulvinar etiam.</li>
-												<li>Etiam vel felis at viverra.</li>
-												<li>Felis enim feugiat magna.</li>
-												<li>Etiam vel felis nullam.</li>
-												<li>Felis enim et tempus.</li>
-											</ol>
-
-											<h3>Icons</h3>
-											<ul class="icons">
-												<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-												<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-												<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-												<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-												<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-											</ul>
-											<ul class="icons alt">
-												<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
-												<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
-												<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-												<li><a href="#" class="icon brands alt fa-github"><span class="label">Github</span></a></li>
-												<li><a href="#" class="icon brands alt fa-dribbble"><span class="label">Dribbble</span></a></li>
-											</ul>
-
-										</div>
-									</div>
 									<h3>Definition</h3>
 									<dl>
 										<dt>Item 1</dt>

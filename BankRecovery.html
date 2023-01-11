@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Project: Housing price conundrum</title>
+		<title>Project: Bank loan recovery </title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -46,6 +46,10 @@
 				<h2> Bank Loan Recovery Model </h2>
 			</header>
 
+			Tags: 
+				Exploratory Data Analysis &bull; Regression Discontinuity &bull; Business Intelligence 
+				<hr />
+				
 			<!-- Text stuff -->
 			<!-- <header> -->
 				<h2>Context</h2>
@@ -126,7 +130,7 @@ stats.kruskal(Level_0_age,Level_1_age)
 </code>
 </pre>
 
-The <strong>Krushkal-Wallis H test</strong> (aka one-way ANOVA on ranks, a non-parametric test) elicits that there is <strong>no statistically significant difference</strong> in age in the expected recovery amounts of just below and above the $1000 threshold (H=3.45, p = .06). 
+The <strong>Kruskal-Wallis H test</strong> (aka one-way ANOVA on ranks, a non-parametric test) elicits that there is <strong>no statistically significant difference</strong> in age in the expected recovery amounts of just below and above the $1000 threshold (H=3.45, p = .06). 
 
 <p> A similar test in performed on <strong>Gender</strong> by first creating a gender-wise cross-tabulation. Since Gender is a categorical variable, we can perform the <strong>Chi-squre test</strong>. 
 
@@ -146,7 +150,9 @@ print(p_val)
 
 </pre>
 
-<blockquote> <strong>Same tests are repeated at other key thresholds ($2000,$3000 and $5000) with similar results of failing to reject the null hypothesis (no age and gender effect observed)</strong>. </blockquote> 
+<p>	<img src="images\bank_recovery\chiSq.png" alt="" /> </p>
+
+<blockquote> <strong>Both of these tests are repeated at other key thresholds ($2000,$3000 and $5000) with similar results of failing to reject the null hypothesis (no age and gender effect)</strong>. </blockquote> 
 
 <hr />
 
