@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<!--
+	Zohaib Aftab, Data Scientist
+	zohaibdr.github.io | 
+	To showcase my projects
+-->
+<html>
+	<head>
+		<title>Project: Concrete </title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Home</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">back to Projects</a></li>
+							<li><a href="resume.html">Resumé</a></li>
+							<li><a href="elements.html">Published works</a></li>
+						</ul> 
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+		<section class="post">
+			<header class="major">
+				<h1> The Concrete Compression Conundrum </h1>
+			</header>
+
+			Tags: 
+				Multivariate regression &bull; Variance inflation factor (VIF)
+				<hr />
+				
+			<!-- Text stuff -->
+			<!-- <header> -->
+				
+				<p>Concrete is the most widely used building material in the world. It is a mix of cement and water with gravel and sand. It can also include other materials like fly ash, blast furnace slag, and additives. </p>
+
+				<p>The compressive strength of concrete is a function of components and age. A sample of more than a 1000 different combinations was published (<a href = "https://doi.org/10.1016/S0008-8846(98)00165-3" target="_blank"> Source</a> ). 
+				</p>
+				
+
+				<p> <span class="image fit"> <img src="images\concrete\compressive-strength-of-concrete-cube.png" alt="" /> </span> </p>
+
+
+				<h2>Data Preparation</h2>
+				<p>The data was first loaded into a Pandas dataframe using the `pd.read_csv` function. The `info` and `shape` methods were used to check the number of rows and columns and to get information about the data types and missing values. The code then checked for missing values and removed any duplicate rows.</p>
+				<h2>Data Exploration and Visualization</h2>
+				<p>The code calculated basic statistics for each column using the `describe` method. Boxplot and distribution plots were created for each column to check for outliers and to visualize the distribution of the data. A heatmap was created to visualize the correlations among the input variables. The code also performed univariate analysis and plotted histograms for each column.</p>
+				<h2>Data Modeling</h2>
+				<p>The code split the data into training and testing sets using the `train_test_split` function. The training data was then scaled using the `StandardScaler` method. A regression analysis was performed on the training data using the OLS method and the variance inflation factor (VIF) was calculated to check for multicollinearity among the input variables. Finally, the model was used to predict the target variable on the training data.</p>
+			 
+			
+
+
+				
+									
+		<h1>Results</h1>
+		The result of 
+
+
+
+		<h1>Conclusion</h1>
+		<div class="box">
+To conclude, it is worth chasing the smaller loans, by changing the strategy at each of the first three strategy levels. However, for the loans greater than $5000, it is not worth investing in Level 4 strategy. 
+</div>
+
+									<hr />
+
+
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section>
+							<form method="post" action="#">
+								<div class="fields">
+									<div class="field">
+										<label for="name">Name</label>
+										<input type="text" name="name" id="name" />
+									</div>
+									<div class="field">
+										<label for="email">Email</label>
+										<input type="text" name="email" id="email" />
+									</div>
+									<div class="field">
+										<label for="message">Message</label>
+										<textarea name="message" id="message" rows="3"></textarea>
+									</div>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Send Message" /></li>
+								</ul>
+							</form>
+						</section>
+						<section class="split contact">
+							<section class="alt">
+								<h3>Address</h3>
+								<p>1234 Somewhere Road #87257<br />
+								Nashville, TN 00000-0000</p>
+							</section>
+							<section>
+								<h3>Phone</h3>
+								<p><a href="#">(000) 000-0000</a></p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p><a href="#">info@untitled.tld</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
