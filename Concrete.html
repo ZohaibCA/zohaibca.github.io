@@ -11,6 +11,21 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+		<!-- for math equations  -->
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+		<!-- To stop images from overflowing  -->
+		<style>
+			img{
+				max-width: 90%;  
+				display: block; /* remove extra space below image */
+			}
+		</style>
+
+	</head>
+
 	</head>
 	<body class="is-preload">
 
@@ -47,103 +62,100 @@
 			</header>
 
 			Tags: 
-				Multivariate regression &bull; Variance inflation factor (VIF)
+				Multivariate Analysis &bull; Feature Engineering 
 				<hr />
 				
-			<!-- Text stuff -->
+				<ul class="actions">
+					<li><a target = "_blank" href="https://github.com/zohaibdr/DSportfolio_" class="button primary">Python Code Here</a></li>
+				</ul>
 			<!-- <header> -->
-				
-				<p>Concrete is the most widely used building material in the world. It is a mix of cement and water with gravel and sand. It can also include other materials like fly ash, blast furnace slag, and additives. </p>
+				<h2> Context </h2>
+				<p>Concrete is the most widely used building material in the world. It is a mix of cement and water with gravel and sand. It can also include other materials like fly ash, blast furnace slag, and additives. Predicting its strength from these ingredients is a difficult task, as each ingredient can have an effect on the strength of the concrete.</p>
 
-				<p>The compressive strength of concrete is a function of components and age. A sample of more than a 1000 different combinations was published (<a href = "https://doi.org/10.1016/S0008-8846(98)00165-3" target="_blank"> Source</a> ). 
-				</p>
-				
-
-				<p> <span class="image fit"> <img src="images\concrete\compressive-strength-of-concrete-cube.png" alt="" /> </span> </p>
+				<p> <img src="images/concrete/mix.png" alt=""> </p>
 
 
-				<h2>Data Preparation</h2>
-				<p>The data was first loaded into a Pandas dataframe using the `pd.read_csv` function. The `info` and `shape` methods were used to check the number of rows and columns and to get information about the data types and missing values. The code then checked for missing values and removed any duplicate rows.</p>
+
+				<p><strong>Machine Learning can help find the optimal recipe of ingredients and predict the strength properties of the concrete</strong>. All we need is experimental data to train our machine learning model.</p>
+				<p>The compressive strength of concrete is a function of components and age. A sample of 1030 different combinations was published (<a target="_blank" href="https://doi.org/10.1016/S0008-8846(98)00165-3">Source</a>) and is used in this project. It contains the following variables:</p>
+				<ol>
+					<li>"cement" - Portland cement in kg/m3</li>
+					<li>"slag" - Blast furnace slag in kg/m3</li>
+					<li>"fly_ash" - Fly ash in kg/m3</li>
+					<li>"water" - Water in liters/m3</li>
+					<li>"superplasticizer" - Superplasticizer additive in kg/m3</li>
+					<li>"coarse_aggregate" - Coarse aggregate (gravel) in kg/m3</li>
+					<li>"fine_aggregate" - Fine aggregate (sand) in kg/m3</li>
+					<li>"age" - Age of the sample in days</li>
+					and Finally, the <strong>Strength</strong> in Megapascals. 
+				</ol>
+				<h2>Objective</h2>
+				<p>The objective of this project is to identify key component which affect its compressive strength and develop a predictive model for future use.</p>
+				<p>The model <strong> should be interpretable</strong>, hence multivariate linear regression is chosen as the ML algorithm.</p>
+
 				<h2>Data Exploration and Visualization</h2>
-				<p>The code calculated basic statistics for each column using the `describe` method. Boxplot and distribution plots were created for each column to check for outliers and to visualize the distribution of the data. A heatmap was created to visualize the correlations among the input variables. The code also performed univariate analysis and plotted histograms for each column.</p>
-				<h2>Data Modeling</h2>
-				<p>The code split the data into training and testing sets using the `train_test_split` function. The training data was then scaled using the `StandardScaler` method. A regression analysis was performed on the training data using the OLS method and the variance inflation factor (VIF) was calculated to check for multicollinearity among the input variables. Finally, the model was used to predict the target variable on the training data.</p>
-			 
-			
+				<p>I created a correlation plot superimposed by a heatmap to visualize the linear relationships among the input variables.</p>
+				<p> <img src="images/concrete/correlation_all.png" alt=""> </p>
 
 
-				
-									
-		<h1>Results</h1>
-		The result of 
+				<p>Following observations are made from this analysis:</p>
+
+				<ul>
+					<li>'Cement' is the <strong>best predictor</strong> for concrete strength.</li>
+					<li>'Superplasticizer' shows <strong>medium</strong> correlation with compressive strength.</li>
+					<li>'Slag', 'fly_ash' are very <strong>weak</strong> predictors so <strong>can be omitted</strong>.</li>
+					<li>'Water' shows a <strong>weak</strong> negative correlation with strength.</li>
+				</ul>
+				<h3>Multicollinearity:</h3>
+				<ul>
+					<li>'Superplasticizer' and 'fly_ash' shows some <strong>medium</strong> correlation (r=.38) between them.</li>
+					<li>'Water' and 'superplasticizer' shows <strong>strong negative correlation</strong> between them (r=-.66).</li>
+				</ul>
+				<p>I dropped ‘fly_ash’ as it was weakly correlated to target variable (strength). Of 'Water' and 'Superplasticizer', I dropped Water which has weaker correlation with ‘Strength’.</p>
+				<blockquote> The final model contained 5 features including: <strong>Cement, Superplasticizer, Coarse Aggregate, Fine Aggregate, and Age.</strong></blockquote>
+
+				<h2> Prior Knowledge </h2>
+				<p> A review of existing literature on the subject indicated that ageing has little effect on concrete strength after 90 days <a target="_blank" href="https://www.cement.org/learn/concrete-technology/concrete-construction/curing-in-construction">(Source)</a>. Moreover, typical ageing days for concrete are 1, 7, 28 and 90 days as shown in the following figure. Hence, I decided to bucket the 'Age' column into the above 4 categories. This choice will help the learning algorithm.</p>
+					<p> <img src="images/concrete/concrete_days.png" alt="" /> </p>
+					
+<!-- <pre>
+	<code> 
+		DF['Age'].head()
+
+		# Convert Age into set 4 categories 
+		# From 0 to 7 days is Cat. 1
+		# From 8 to 28 days is Cat. 2
+		# From 29 to 90 days is Cat. 3
+		# Anything over 90 days is Cat. 4
+
+		# Define the bins and the labels for each bin
+		bins = [0, 8, 29, 91, 400] 
+		labels = [1, 2, 3, 4]   
+		DF['Age_bins'] = pd.cut(DF['Age'], bins=bins, labels=labels, right=False)
+</code>
+</pre> -->
+		<!-- - Dont do one-hot encoding. Will lead to multicollinearity.  -->
+
+		<p> I then split the data into training and testing sets to evaluate model's predictive capacity. An <strong>OLS linear regression model</strong> was created using '<strong>statsmodels</strong>' library. </p>
+
+		<h2> Model Results and Interpretation </h2>
+		<p> The effect of 'Coarse Agg' is minimal and not statistically significant (p=.862) so can be neglected. The coefficients for other four components are significant we can form an empirical equation using them as: </p>
+
+		<p> <img src="images/concrete/coeffs.png" alt=""> </p>
+
+		<p> Strength (MPa) = \(0.072 \times\) Cement + \(0.94 \times\) Superplasticizer - \(0.014 \times\) Fine aggregate + \(9.6 \times\) (Age category) </p>
+		<p> The <strong>skew</strong> of the resulting residuals is small (0.442). The <strong>Kurtosis</strong> value is closer to the target value (3.47). </p>
+		<h2> Model Evaluation </h2>
+		<p> The R2 scores for the model are <strong>65%</strong> and <strong>67%</strong> for training and test set respectively. The model has a typical error (<strong>RMSE</strong>) of <strong>9.5 MPa.</strong> </p>
+
+	
+		<p> <img src="images/concrete/regression_plot.png" alt=""> </p>
+
+The residual plot shows a random scatter of points forming an approximately constant width band around the identity line. This means that both the assumption of <strong>linearity</strong> and <strong>homoscedasticity</strong> are met. 
+
+		<p> <img src="images/concrete/residual.png" alt=""> </p>
 
 
-
-		<h1>Conclusion</h1>
-		<div class="box">
-To conclude, it is worth chasing the smaller loans, by changing the strategy at each of the first three strategy levels. However, for the loans greater than $5000, it is not worth investing in Level 4 strategy. 
-</div>
-
-									<hr />
-
-
-							</section>
-
-					</div>
-
-				<!-- Footer -->
-					<footer id="footer">
-						<section>
-							<form method="post" action="#">
-								<div class="fields">
-									<div class="field">
-										<label for="name">Name</label>
-										<input type="text" name="name" id="name" />
-									</div>
-									<div class="field">
-										<label for="email">Email</label>
-										<input type="text" name="email" id="email" />
-									</div>
-									<div class="field">
-										<label for="message">Message</label>
-										<textarea name="message" id="message" rows="3"></textarea>
-									</div>
-								</div>
-								<ul class="actions">
-									<li><input type="submit" value="Send Message" /></li>
-								</ul>
-							</form>
-						</section>
-						<section class="split contact">
-							<section class="alt">
-								<h3>Address</h3>
-								<p>1234 Somewhere Road #87257<br />
-								Nashville, TN 00000-0000</p>
-							</section>
-							<section>
-								<h3>Phone</h3>
-								<p><a href="#">(000) 000-0000</a></p>
-							</section>
-							<section>
-								<h3>Email</h3>
-								<p><a href="#">info@untitled.tld</a></p>
-							</section>
-							<section>
-								<h3>Social</h3>
-								<ul class="icons alt">
-									<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
-									<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-									<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-								</ul>
-							</section>
-						</section>
-					</footer>
-
-				<!-- Copyright -->
-					<div id="copyright">
-						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
-					</div>
 
 			</div>
 

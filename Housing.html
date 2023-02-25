@@ -9,9 +9,23 @@
 		<title>Project: Housing price conundrum </title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+		<style>
+			img{
+				max-width: 90%;  
+				display: block; /* remove extra space below image */
+			}
+		</style>
+
 	</head>
+
 	<body class="is-preload">
 
 		<!-- Wrapper -->
@@ -23,19 +37,22 @@
 					</header>
 
 				<!-- Nav -->
-					<nav id="nav">
-						<ul class="links">
-							<li><a href="index.html">back to Projects</a></li>
-							<li><a href="resume.html">Resumé</a></li>
-							<li><a href="elements.html">Published works</a></li>
-						</ul> 
-						<ul class="icons">
-							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-						</ul>
-					</nav>
+				<nav id="nav">
+					<ul class="links">
+						<li class="active"><a href="index.html">Projects</a></li>
+						<li><a href="resume.html">Resumé</a></li>
+						<li><a href="Published.html">Published works</a></li>
+					</ul>
+
+					<ul class="icons">
+						<li><a target="_blank" href="https://www.linkedin.com/in/drzohaib/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+						<li><a target="_blank"  href=https://github.com/zohaibdr/DSportfolio_ class="icon brands fa-github"><span class="label">GitHub</span></a>
+						</li>
+						<li><a target="_blank"  href=mailto:zohaib@live.fr class="fa fa-envelope-open" style="font-size:22px"><span class="label"></span></a>
+						</li>
+
+					</ul>
+				</nav>
 
 				<!-- Main -->
 					<div id="main">
@@ -47,9 +64,11 @@
 			</header>
 
 			Tags: 
-				Exploratory Data Analysis &bull; One Hot encoding &bull; Data Wrangling &bull; Feature Creation  &bull; Feature scaling 
+				One Hot encoding &bull; Data Wrangling &bull; Feature Creation  &bull; Feature scaling 
 				<hr />
-			<!-- Text stuff -->
+			<ul class="actions">
+					<li> <a target = "_blank" href="https://github.com/zohaibdr/DSportfolio_" class="button primary">Python Code Here</a></li>
+				</ul>
 			<!-- <header> -->
 
 				<h2>Context</h2>
@@ -60,7 +79,6 @@
 				But what is available publically is the census data...with only a limited set attribute, relating to the locality/district. 
 
 			</p>
-			<!-- </header> -->
 
 				<h2>Problem Statement </h2>
 				<p><b> Given the following set of attribute of the district, can we predict house price in the area accurately?  </b>  </p>
@@ -99,23 +117,23 @@
 					<h1>Data Analysis</h1>
 
 					
-						An Exploratory data analysis reveals the distribution of data and the interrelation between various attributes. To avoid data leakage, the data is split into train/validation/test sets even before EDA. 
+						An Exploratory data analysis reveals the distribution of data and the interrelation between various attributes. To avoid data leakage, I split the data into train/validation/test sets even before EDA. 
 						<br> 
-						In the data set, the features of 'total_bedrooms', 'population' and 'households' are highly correlated as indicated in the figure.
+						In the data set, the features of 'total_bedrooms', 'population' and 'households' are highly correlated as indicated.
 						This information allows reducing the number of features later on by eliminating some of the redundant features! <br>
 
 					
 					<p> <img src="images/housing/Correlation plot 1_edit.png" alt="" />  </p>
 						
-					Next, it is useful to know which features are strongly correlated with the <strong> Target variable </strong>. For this, we can create a table below: 
+					Next, it is useful to know which features are strongly correlated with the <strong> Target variable </strong>. For this, I created the table below: 
 
 					<p> <img src="images/housing/top5corr.png" alt="" /> </p>
 					
-					Turns out, the Median income is the single most important determinant of house price. Moreover, the being away from the ocean (feature 'OceanIn') is negatively correlated, which make sense. <br>
+					Turns out, the Median income is the single most important determinant of house price. Moreover, the fact of being away from the ocean (feature 'OceanIn') is negatively correlated, which make sense. <br>
 					
 					<h2> Introducing custom features </h2> 
 					In order to improve the accuracy of machine learning models, a big part of modeling consists of creating new, more relevant features from raw data. For example, total number of rooms in a block are not useful attributes in determining house value unless we know the total housholds there are in that block. Similarly, population per house is more logical than total block population. <br>
-					We introduce two features namely <strong> rooms_per_household </strong> and <strong> popolation_per_household </strong> and see their correlation with the target. 
+					I introduced two features namely <strong> 'rooms_per_household' </strong> and <strong> 'population_per_household' </strong> and see their correlation with the target. 
 <pre>
 	<code> 
 #create new variables first for new attributes 
@@ -135,11 +153,8 @@ It gives:
 <p>  <img src="images/housing/top5corrNew.png" alt="" />	 </p>
 			Clearly, they have some correlation, if not very strong, to the house price. They will likely improve prediction accuracy. 
 
-									<!-- </header> -->
-									<hr />
-									
-		<h1>Results</h1>
-		[Prior to producing results, the features are scaled using a Standard Scalar. Details in the GITHUB repo ] <br>
+<h2> Scaling </h2>
+Lastly, I scaled the data using 'StandardScaler' from sklearn library. <br>
 
 <pre>
 	<code>
@@ -156,75 +171,104 @@ X_valid_scaled  = scaler.transform(X_valid_reduced)
 	</code>
 </pre>
 
+<!-- <hr /> -->
+		<h1>Results</h1>
+
+
 		<h2>Establishing baseline </h2>
-			
-		We first need to establish a baseline model of prediction. Multivariate linear regression is a common choice. <br>
+		It is best to first establish a baseline for prediction. I use linear regression as a baseline model in this case. <br>
 		
 		<br/> 
 		<blockquote> 
 		<strong> The cross validated R2 score on the training set is 0.62. The R2 score on test set is 0.63. </strong> <br> </blockquote>
-		Below is the regression plot, only for the test set: 
+		Below is the regression plot, for the test set. The baseline model predicts house value with a typical (RMSE) error of US$70k.
 
-		 <img src="images/housing/regressPlot.png" alt="" />
-		<br> 
-		Below is a residual and QQ-plot for both training and test sets. 
-<strong>		The left plot shows that the residuals largely follow the assumption of homoscedasticity. The right plot suggests that the assumptions of normality and linearity have also not been violated. 
+		<p> <img src="images/housing/regressPlot.png" alt="" />  </p> 
+		
+		<strong> The residual plot (left) shows that the model largely follows the assumption of homoscedasticity. The Q-Q plot on the right suggests that the assumptions of normality and linearity have also not been violated. 
 </strong>
 		<p> <img src="images/housing/output.png" alt="" /> </p>
-		<br/> 
-		 The baseline model predicts house value with a typical error of US$70k.
-		<br/> 
-		<br/> 
 
-		<h1> Improving predictions  </h1>										
+
+		<h2> Improving predictions  </h2>										
 		In order to improve upon the prediction accuracy, we could try to optimize hyper-parameters using the SGD regressor (scikit-learn). However, the strategy here is to first find the most powerful algorithm. <br>
 		
-		Turning to tree-based and/or ensemble methods, below are the train and test accuracies for <strong>5 popular algorithms</strong>:
+		Turning to tree-based and ensemble methods, below are the train and test accuracies for <strong>5 popular algorithms</strong>: 
 
-		<span class="image fit"> <img src="images/housing/treeR2_unoptim.png" alt="" /> </span>
+		<span > <img src="images/housing/treeR2_unoptim.png" alt="" /> </span>
 		<blockquote> 
 		<strong>All models are overfitting the data at default values which in Normal. </strong>
 		</blockquote>
-		We need to tune the model by adjusting the hyper-parameters in a systemic way and find the OPTIMAL model. 
-		AdaBoost has the worst result so can be skipped for tuning.
+		
 
 		<h2> Model Tuning </h2> 
-		Using 'RandomSearchCV', the best model obtained is: 
+		I tuned the models by adjusting their hyper-parameters using 'RandomSearchCV'. 
+		
+<pre>
+	<code>
+	from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
+	from sklearn.pipeline import Pipeline
+	
+	DecTree = DecisionTreeRegressor(random_state=10)
+	RFreg = RandomForestRegressor(random_state=10)
+	GBreg = GradientBoostingRegressor(random_state=10)
+	XGBoostreg = XGBRegressor(random_state=10)
+	
+	param1 = {}     #Decision tree
+	param1['regressor'] = [DecTree]
+	param1['regressor__max_depth'] = np.arange(2,8)
+	param1['regressor__min_samples_split']= np.arange(2, 8)
+	param1['regressor__min_samples_leaf']= np.arange(5, 10)
+	# param1['regressor__min_impurity_decrease'] = [0, 0.001, 0.002, 0.003]
+	
+	param2 = {}  #Random forests
+	param2['regressor'] = [RFreg]
+	param2['regressor__max_depth'] = np.arange(2,8) 
+	param2['regressor__min_samples_split']= np.arange(2, 8)
+	param2['regressor__min_samples_leaf']= np.arange(5, 10)
+	param2['regressor__n_estimators'] = [10, 50, 100]
+	
+	param3 = {}  #Gradient Boost
+	param3['regressor'] = [GBreg]
+	param3['regressor__max_depth'] = np.arange(2,8) 
+	param3['regressor__n_estimators'] = [50, 100, 200]  
+	param3['regressor__min_samples_split']= np.arange(1, 1000, 100)
+	param3['regressor__min_samples_leaf']= np.arange(1, 1000, 100)
+	
+	param4 = {} #XG Boost 
+	param4['regressor'] = [XGBoostreg]
+	param4['regressor__max_depth'] = np.arange(2,10) 
+	
+	pipeline = Pipeline([('regressor', DecTree)])
+	params = [param1, param2, param3,  param4]
+	
+	randomSearch = RandomizedSearchCV(pipeline, params, scoring=None, cv=5, n_jobs= -1, verbose = 2, refit = True, return_train_score=True, n_iter = 20, random_state=10) 
 
+	</code>
+</pre>
+		The resulting best model and optimal parameters were: <br> 
+        <strong>GradientBoostingRegressor</strong> (max_depth=7, <br> 
+                                           min_impurity_decrease=0.002, <br> 
+                                           min_samples_leaf=200, <br> 
+                                           min_samples_split=300, <br> 
+                                           random_state=10))]) <br> 
+										   <br>
+<strong>The R2 score of the best estimator is: 0.750</strong> <br> 
+<strong>The RMSE of the prediction is: 36563 dollars</strong>  <br> 
+<p> 
+<blockquote> 
+<strong>Both of these scores are better than the baseline model (linear regression). </strong>
+</blockquote>
+</p>
+	Finally, I calculated and plotted the features importances from the model:
+	<span> <img src="images/housing/FeatImp.png" alt="" /> </span>
 
-									
-						<section class="split contact">
-							<section class="alt">
-								<h3>Address</h3>
-								<p>1234 Somewhere Road #87257<br />
-								Nashville, TN 00000-0000</p>
-							</section>
-							<section>
-								<h3>Phone</h3>
-								<p><a href="#">(000) 000-0000</a></p>
-							</section>
-							<section>
-								<h3>Email</h3>
-								<p><a href="#">info@untitled.tld</a></p>
-							</section>
-							<section>
-								<h3>Social</h3>
-								<ul class="icons alt">
-									<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
-									<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-									<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-								</ul>
-							</section>
-						</section>
-					</footer>
+	As expected, the median income is the biggest determinant of housing price in the area as also indicated in the correlation plot. 
 
-				<!-- Copyright -->
-					<div id="copyright">
-						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
-					</div>
+	
+</div>
 
-			</div>
+<hr/>
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
