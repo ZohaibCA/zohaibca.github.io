@@ -7,67 +7,144 @@
 <html>
 	<head>
 		<title>Project: Bank loan recovery </title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<meta content="" name="description">
+		<meta content="" name="keywords">
+	  
+		<!-- Favicons -->
+		<link href="assets/img/favicon.png" rel="icon">
+		<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+	  
+		<!-- Vendor CSS Files -->
+		<link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+		<link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+		<link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+	  
+		<!-- Template Main CSS File -->
+		<link href="assets/css/style.css" rel="stylesheet">
 
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-
+		<!-- Add icon library, For the download button --> 
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<style> <!--For the download button-->
+		.btn {
+		  background-color: DodgerBlue;
+		  border: none;
+		  color: white;
+		  padding: 12px 30px;
+		  cursor: pointer;
+		  font-size: 20px;
+		} 
+		/* Darker background on mouse-over */
+		.btn:hover {
+		  background-color: RoyalBlue;
+		}
+		</style>
 
-		img {
-			max-width: 90%;
-			height: auto;
-		  }
-
+		
+		<style>
+			img{
+				max-width: 90%;  
+				display: block; /* remove extra space below image */
+			}
+		</style>
 	</head>
-	<body class="is-preload">
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+	<body>
 
-				<!-- Header -->
-					<header id="header">
-						<a href="index.html" class="logo">Home</a>
-					</header>
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center justify-content-between">
 
-				<!-- Nav -->
-				<nav id="nav">
-					<ul class="links">
-						<li class="active"><a href="index.html">Projects</a></li>
-						<li><a href="resume.html">Resumé</a></li>
-						<li><a href="Published.html">Published works</a></li>
-					</ul>
+      <!-- <h1 class="logo"><a href="index.html">DevFolio</a></h1> -->
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
 
-					<ul class="icons">
-						<li><a target="_blank" href="https://www.linkedin.com/in/drzohaib/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-						<li><a target="_blank"  href=https://github.com/zohaibdr/DSportfolio_ class="icon brands fa-github"><span class="label">GitHub</span></a>
-						</li>
-						<li><a target="_blank"  href=mailto:zohaib@live.fr class="fa fa-envelope-open" style="font-size:22px"><span class="label"></span></a>
-						</li>
 
-					</ul>
-				</nav>
+	  <nav id="navbar" class="navbar">
+		<ul>
+		  <li><a class="nav-link scrollto active" href="index.html">Home</a></li>
+		  <li><a class="nav-link scrollto" href="index.html#about">About</a></li>
+		  <!-- <li><a class="nav-link scrollto" href="index.html#services">Services</a></li> -->
+		  <li><a class="nav-link scrollto " href="index.html#portfolio">Portfolio</a></li>
+		  <!-- <li><a class="nav-link scrollto " href="index.html#blog">Blog</a></li> -->
+		  
+		  <li><a class="nav-link scrollto" href="index.html#contact">Contact</a></li>
+		</ul>
+		<i class="bi bi-list mobile-nav-toggle"></i>
+	  </nav><!-- .navbar -->
 
-				<!-- Main -->
-					<div id="main">
 
-						<!-- Post -->
-		<section class="post">
-			<header class="major">
-				<h2> Bank Loan Recovery Model </h2>
-			</header>
+      <!-- .navbar -->
 
-			Tags: 
-				Exploratory Data Analysis &bull; Regression Discontinuity &bull; Business Intelligence 
-				<hr />
-				
-				<ul class="actions">
-					<li><a target = "_blank" href="https://github.com/zohaibdr/DSportfolio_" class="button primary">Python Code Here</a></li>
-				</ul>
-			<!-- <header> -->
+    </div>
+  </header><!-- End Header -->
+
+  <div class="hero hero-single route bg-image" style="background-image: url(assets/img/overlay-bg.jpg)">
+    <div class="overlay-mf"></div>
+    <div class="hero-content display-table">
+      <div class="table-cell">
+        <div class="container">
+          <h2 class="hero-title mb-4">
+			Bank Loan Recovery Model
+			</h2>
+          <ol class="breadcrumb d-flex justify-content-center">
+            <li class="breadcrumb-item">
+              <a href="index.html#Portfolio">Portfolio</a>
+            </li>
+            <li class="breadcrumb-item active">
+				Bank Loan Recovery Model
+				</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main id="main">
+
+    <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-8">
+            <div class="portfolio-details-slider swiper">
+              <div class="swiper-wrapper align-items-center">
+
+                <div class="swiper-slide">
+                  <img src="assets/img/portfolio-details-1.jpg" alt="">
+                </div>
+
+                <div class="swiper-slide">
+                  <img src="assets/img/portfolio-details-2.jpg" alt="">
+                </div>
+
+                <div class="swiper-slide">
+                  <img src="assets/img/portfolio-details-3.jpg" alt="">
+                </div>
+
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="portfolio-info">
+              <h3>Project information</h3>
+			  <ul>
+                <li><strong>Category</strong>: Banking </li>
+                <li><strong>Tags</strong>: Kruskal-Wallis H test, Regression Discontinuity  </li>
+                <li><strong>Data source </strong>:<a href="" target="_blank">  <em> Datacamp </em> </a> </li>
+
+                <p class="pt-3"><a class="btn btn-primary btn js-scroll px-4" href="" target="_blank" role="button">  See Code on Github  </a></p> 
+
+              </ul>
+            </div>
+            <div class="portfolio-description">
+             
+            </div>
+          </div>
 				<h2>Context</h2>
 				<p> After a debt has been legally declared "uncollectable" by a bank, the account is considered "charged-off." But that doesn't mean the bank walks away from the debt. They still want to collect some of the money they are owed using internal collections staff or outside collection agencies. The bank will score the account to assess the expected recovery amount, that is, the expected amount that the bank may be able to receive from the customer in the future. This amount is a function of the probability of the customer paying, the total debt, and other factors that impact the ability and willingness to pay.</p> 
 
@@ -128,25 +205,26 @@
 					
 <pre>
 	<code> 
-# Import stats module
-from scipy import stats
-# Compute average age just below and above the threshold
-era_900_1100 = df.loc[(df['expected_recovery_amount']<1100) & 
-						(df['expected_recovery_amount']>=900)]
-print(era_900_1100.head())
-by_recovery_strategy = era_900_1100.groupby(['recovery_strategy'])
-by_recovery_strategy['age'].describe().unstack()
+	# Import stats module
+	from scipy import stats
+	# Compute average age just below and above the threshold
+	era_900_1100 = df.loc[(df['expected_recovery_amount']<1100) & 
+							(df['expected_recovery_amount']>=900)]
+	print(era_900_1100.head())
+	by_recovery_strategy = era_900_1100.groupby(['recovery_strategy'])
+	by_recovery_strategy['age'].describe().unstack()
 
-print(by_recovery_strategy['age'].describe().unstack())
+	print(by_recovery_strategy['age'].describe().unstack())
 
-# Perform Kruskal-Wallis test 
-Level_0_age = era_900_1100.loc[df['recovery_strategy']=="Level 0 Recovery"]['age']
-Level_1_age = era_900_1100.loc[df['recovery_strategy']=="Level 1 Recovery"]['age']
-stats.kruskal(Level_0_age,Level_1_age) 
-</code>
+	#Perform Kruskal-Wallis test 
+	Level_0_age = era_900_1100.loc[df['recovery_strategy']=="Level 0 Recovery"]['age']
+	Level_1_age = era_900_1100.loc[df['recovery_strategy']=="Level 1 Recovery"]['age']
+	stats.kruskal(Level_0_age,Level_1_age) 
+	</code>
 </pre>
-
-The <strong>Kruskal-Wallis H test</strong> (aka one-way ANOVA on ranks, a non-parametric test) elicits that there is <strong>no statistically significant difference</strong> in age in the expected recovery amounts of just below and above the $1000 threshold (H=3.45, p = .06). 
+<p> 
+The <b> Kruskal-Wallis H test</b> (aka one-way ANOVA on ranks, a non-parametric test) elicits that there is <strong>no statistically significant difference</strong> in age in the expected recovery amounts of just below and above the $1000 threshold (H=3.45, p = .06). 
+</p>
 
 <p> A similar test in performed on <strong>Gender</strong> by first creating a gender-wise cross-tabulation. Since Gender is a categorical variable, we can perform the <strong>Chi-squre test</strong>. 
 
@@ -175,19 +253,20 @@ print(p_val)
 <h2> Back to business </h2>
 
 					
-			Now that we are confident that age and gender has no significant effect on recovery, we can move to move to key variable of interest, the <strong> 'actual_recovery_amount'. </strong> <br>
-			A first step in examining the relationship between the actual recovery amount and the expected recovery amount is to develop a scatter plot. 
+			<p> Now that we are confident that age and gender has no significant effect on recovery, we can move to move to key variable of interest, the <strong> 'actual_recovery_amount'. </strong> </p>   
+			<p> A first step in examining the relationship between the actual recovery amount and the expected recovery amount is to develop a scatter plot. </p> 
 
 
 <p>	<img src="images\bank_recovery\scatterActual.png" alt="" /> </p>
-			Since the cost of change in recovery strategy is only $50, it is hard to notice such small jump (if any) on this plot at key thresholds ($1000, $2000, etc). But we need measure the effect as well. For this, <strong>Regression Discontinuity Design (RDD)</strong> is a suitable option. <br>
+
+			<p> Since the cost of change in recovery strategy is only $50, it is hard to notice such small jump (if any) on this plot at key thresholds ($1000, $2000, etc). But we need measure the effect as well. For this, <strong>Regression Discontinuity Design (RDD)</strong> is a suitable option. </p>
 			
-			For this, we first add an indicator of the true threshold to the model (starting at $1000) which represents whether or not the expected recovery amount is greater than the threshold (say 0 and 1). 
+			<p> For this, we first add an indicator of the true threshold to the model (starting at $1000) which represents whether or not the expected recovery amount is greater than the threshold (say 0 and 1). </p>
 		
 <strong>			When we add the true threshold to the model, the regression coefficient for the true threshold represents the additional amount recovered due to the higher recovery strategy.
 </strong>
 			
-<blockquote class="blue-edge"> If the higher recovery strategy helped recovery more money, then the regression coefficient of the true threshold will be greater than zero.  If the higher recovery strategy did not help recovery more money, then the regression coefficient will not be statistically significant. </blockquote> 
+<blockquote> If the higher recovery strategy helped recovery more money, then the regression coefficient of the true threshold will be greater than zero.  If the higher recovery strategy did not help recovery more money, then the regression coefficient will not be statistically significant. </blockquote> 
 
 <pre> 
 <code>
@@ -211,18 +290,12 @@ print(p_val)
 
 </pre>
 
-
-
-		<hr />
-									
+	
 		<h1>Results</h1>
-		The result of 
 
 		<p>	<img src="images\bank_recovery\result1.png" alt="" /> </p>
-
-<strong>		The regression coefficient for the true threshold was statistically significant with an estimated impact of around $278.  This is much larger than the $50 per customer needed to run this higher recovery strategy.
-</strong>
-Similar analysis is performed for all thresholds with the results summarized in the table below: <br>
+<p> 
+<strong>		The regression coefficient for the true threshold was statistically significant with an estimated impact of around $278.  This is much larger than the $50 per customer needed to run this higher recovery strategy. </strong> I performed similar analysis for all thresholds with the results summarized in the table below: </p>
 
 <p>	<img src="images\bank_recovery\result2.png" alt="" /> </p>
 
