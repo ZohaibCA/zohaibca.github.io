@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<!--
+	Zohaib Aftab, Data Scientist
+	zohaibdr.github.io | 
+	To showcase my projects
+-->
+<html>
+	<head>
+		<title>Project: AI-powered gearbox fault diagnosis </title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+		<style>
+			img{
+				max-width: 90%;  
+				display: block; /* remove extra space below image */
+			}
+		</style>
+
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Home</a>
+					</header>
+
+				<!-- Nav -->
+				<nav id="nav">
+					<ul class="links">
+						<li class="active"><a href="index.html">Projects</a></li>
+						<li><a href="resume.html">Resumé</a></li>
+						<li><a href="Published.html">Published works</a></li>
+					</ul>
+
+					<ul class="icons">
+						<li><a target="_blank" href="https://www.linkedin.com/in/drzohaib/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+						<li><a target="_blank"  href=https://github.com/zohaibdr/DSportfolio_ class="icon brands fa-github"><span class="label">GitHub</span></a>
+						</li>
+						<li><a target="_blank"  href=mailto:zohaib@live.fr class="fa fa-envelope-open" style="font-size:22px"><span class="label"></span></a>
+						</li>
+
+					</ul>
+				</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+		<section class="post">
+			<header class="major">
+				<h2> AI-powered gearbox fault diagnosis  </h2>
+			</header>
+			
+			Tags: 
+				Time domain analysis &bull; Confusion matrix  
+				<hr />
+				<ul class="actions">
+					<li><a target = "_blank" href="https://github.com/zohaibdr/DSportfolio_" class="button primary">Python Code Here</a></li>
+				</ul>
+
+				<!-- <header> -->
+					<h2> Context </h2>
+					<p>Gearbox fault diagnosis using vibration data is a process of analyzing the vibration signals produced by the gearbox during its operation to identify any faults or abnormalities in the system. In general, healthy gearboxes produce a predictable and stable vibration pattern, while faulty gearboxes produce irregular or abnormal vibration patterns. By analyzing the vibration signals, it is possible to identify various types of faults in the gearbox, such as gear wear, tooth breakage, misalignment, and bearing damage.</p>
+					<p>Machine learning can be used to predict tooth breakage issues in gearboxes by analyzing the vibration data collected from the gearbox during operation. </p>
+					
+					<h2> Data and Approach </h2>
+					<p>I used a vibration dataset recorded using a diagnostic simulator in healthy and broken tooth conditions. The data is available at National Renewable Energy Laboratory webpage <a href="https://data.openei.org/submissions/623">https://data.openei.org/submissions/623</a>.</p>
+
+					<img src="images/gearbox/simulator.png" alt=""/> 
+					
+					<p>There are 20 files in total (10 for each condition) containing data from 4 sensors (a1 through a4) for a load ranging from 0% to 90%. Each file contains roughly 50-60 min of data with on average 100,000 observations at 30Hz. 
+					When combined all files, there are a total of 2,021,118 observations. In the state column 'b' stands for broken tooth, 'h' stands for healthy. </p>
+
+					<img src="images/gearbox/data.png" alt=""/> 
+
+
+					<h2> Data Analysis </h2>
+					<p>To analyze this dataset, I combined the reading from all four sensors into a single column using <strong>pandas</strong> <code>melt</code> function, tagged with the <code>sensor</code>, <code>load</code> and <code>state</code> of the gearbox. This facilitates plotting of data for each sensor systematically in Python. </p>
+					<p>First, I started with visual inspection of sensor readings for healthy and broken gearboxes at different loads. When plotted raw values side by side, the differences were not perceptible with the naked eye. </p>
+
+					<img src="images/gearbox/visual1.png" alt=""/> 
+					
+					<p>For a more comprehensive visual analysis, I used <strong>seaborn</strong> 'violin' and 'boxen' plots to show the distribution of sensor readings and compare like for like between the healthy and broken gearboxes for the same <code>load</code> and <code>sensor</code>. 
+					Each column is a different sensor, each row is increasing load. Each plot shows the distribution of reading values between the 'healthy' and 'broken' gearbox </p>
+					
+					<img src="images/gearbox/violin.png" alt=""/> 
+					
+					<p>Apparently, there is a perceptible difference between 'healthy' and 'broken' gearboxes on sensors 'a1'  and 'a2' , especially as the load increases. The differences in sensors 'a3' and 'a4' don't appear to be significant. 
+
+					Finally, I list the overall mean and standard deviation from all four sensors separated by their health. Here, unlike violin plots, I observed a clear difference between healthy and broken signal at sensors 'a1' and 'a3'.</p>
+					<img src="images/gearbox/stdTable.png" alt=""/> 
+					
+					<h2>Data manipulation and feature engineering</h2>
+					<p>As observed in the previous section, statistics describing the spread of data may differentiate between gearboxes. In this section, I created the features which will be input to the machine learning model for learning.</p> 
+
+					<p>First, for each unique combination of 'state', 'load', and 'sensor' columns in df_melt, I grouped the corresponding rows using the <code>groupby</code> method. Then, for each group, I split the 'reading' column values into chunks of 500 using <code>numpy.split</code>. For each chunk, I then computed the following statistical measures:</p>
+					<ul>
+					<li>Mean,</li>
+					<li>Standard deviation,</li>
+					<li>Kurtosis, and</li>
+					<li>Skewness</li>
+					</ul>
+
+					<p>Finally, I created a dictionary of these statistics along with the corresponding values of 'load' and 'sensor' columns. The dictionary is appended to a list 'data'. I then assigned <strong>a binary label of 1 if the 'state' column value is 'broken'</strong> and a label of 0 otherwise.</p>
+
+					<img src="images/gearbox/final_data.png" />
+
+					<h2>Results</h2>
+					<p>I used the <b>TPOT Automated Machine Learning</b> tool to find the best classifier to differentiate the gearboxes. The<b><code>TPOTClassifier</code></b> searches over a broad range of supervised classification algorithms, transformers, and their parameters.</p>
+
+<pre>
+<code>
+from tpot import TPOTClassifier  
+# https://epistasislab.github.io/tpot/using/
+
+tpot_td = TPOTClassifier(generations=5, random_state=42, max_time_mins=20, verbosity=2, cv=3)
+tpot_td.fit(X_train, y_train)
+
+print(f'Best accuracy score: {tpot_td.score(X_test, y_test):0.2%}')
+tpot.export('tpot_gears_pipeline.py')
+</code>
+</pre>
+
+					<p>In about 20 minutes, the best pipeline is found as the <b> <code>ExtraTreesClassifier</code> </b> having an accuracy score of ~80% with the included parameters:</p>
+<pre> 
+<code>
+Best pipeline: ExtraTreesClassifier(input_matrix, bootstrap=False, criterion=entropy, 
+				max_features=0.45, min_samples_leaf=2, min_samples_split=8, n_estimators=100) 
+Best accuracy score: 79.98%
+</code>
+</pre>
+
+					<p>This is a meta estimator that fits a number of randomized decision trees (a.k.a. extra-trees) on various sub-samples of the dataset and uses averaging to improve the predictive accuracy and control over-fitting. I further calculated the confusion matrix and associated metrics:</p>
+					<img src="images/gearbox/confusion_matrix.png" />
+
+					<p>Out of 4836 test examples, the majority of healthy and broken gearboxes (true negatives and true positives respectively) are correctly predicted. At 495 occasions, the model predicted the gearbox to be faulty while it actually fine (false positive). Similarly, the model missed to capture a faulty gearbox at 473 occasions (false negative). Overall, the precision, recall and f1-scores of the model were all 80%.</p>
+
+					<img src="images/gearbox/class_report.png" />
+
+
+
+
+<hr/> 
+
+</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
