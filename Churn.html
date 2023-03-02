@@ -102,15 +102,15 @@
               <div class="swiper-wrapper align-items-center">
 
                 <div class="swiper-slide">
-                  <img src="assets/img/portfolio-details-1.jpg" alt="">
+                  <img src="images/Reason-to-Leave.png" alt="">
                 </div>
 
                 <div class="swiper-slide">
-                  <img src="assets/img/portfolio-details-2.jpg" alt="">
+                  <img src="images/customer_churn/PRecall.png" alt="">
                 </div>
 
                 <div class="swiper-slide">
-                  <img src="assets/img/portfolio-details-3.jpg" alt="">
+                  <img src="images/customer_churn/byarea.png" alt="">
                 </div>
 
               </div>
@@ -136,7 +136,7 @@
           </div>
 
           <!-- Detailed report starts here  -->
-          <div> 
+          <> 
 
             <h1>Context</h1>
             <p>Predicting churn rate is crucial for these companies because the cost of retaining an existing customer is far less than acquiring a new one. <br/> <strong>Machine learning</strong> helps companies analyze customer churn rate based on several factors such as services subscribed by customers, tenure rate, and the usage. </p>
@@ -152,8 +152,7 @@
             </ol>
             <p>There were a total of 5000 entries in the dataset.</p>
             
-            <img src="images/customer_churn/data.png" alt="">
-                  <p> </p>
+            <p> <img src="images/customer_churn/data.png" alt=""></p>
             <h2><strong>Exploratory data analysis</strong></h2>
             <p>During the EDA phase, I mainly asked the following three questions:</p>
             <ol>
@@ -167,26 +166,27 @@
             <h3>Answer to Q1:</h3>
             <ul>
               <li>Churn data is typically imbalanced where the minority class (the number of customers who churn) is often much smaller than the number of customers who do not churn. Here the class distribution is about 1:7 which is significant but not severe.
-      
               </li>
-              <img src="images/customer_churn/classes.png" alt="">
-              </ul>
+              
+             <p> <img src="images/customer_churn/classes.png" alt="">  </p> 
+            
             
               <li> Any random guess would give us the accuracy of about 86% hence <strong>Accuracy would not the right metric to evaluate the model.</strong> 
               Plus I used <strong>stratified sampling</strong> in the <em> 'train_test_split' </em> to have fair distribution of minority class in both subsets of data. 
       
               </li>
-      
-              <p> </p>
+            </ul>
+            
       
             <h3>Answer to Q2:</h3>
             
             <ul>
               <li>There were 3 unique area codes (415, 408, 510). These were almost equally distributed in both classes. </li>
-              <img src="images/customer_churn/byarea.png" alt="">
+            <p>  <img src="images/customer_churn/byarea.png" alt="">  </p> 
               </ul>
-              <p> </p>
-            <h3>Answer to Q3:</h3>
+              
+            
+              <h3>Answer to Q3:</h3>
             <ul>
               <li> Removed the 'phone_number' column. </li>
               <li> Since total day minutes and charges are highly correlated (more minutes used mean more charge), I removed total minutes column for all categories (day, evening, etc).</li>
@@ -254,7 +254,7 @@
               
           <h2>Best classifier and interpretation of results</h2>
           <p>The Random Forest classifier came out to be the best classifier as evident from the table and the follwoing ROC curve.</p>
-          <img src="images/customer_churn/ROC.png"/>
+          <p> <img src="images/customer_churn/ROC.png"/>  </p>
           <p>For the chosen classifier, the <strong>precision</strong> is 95%. This indicates that out of all the customers that the model predicted to leave, 95% of them actually did. This is good precision. The company can target those customers to retain those customers. </p>
             
           <p> Similarly, of all the customers who did leave, the model predicted the outcome with <b>70%</b> accuracy (<strong>recall</strong>). <strong>This means it is missing out 30% of leavers, which could be a big loss in terms of loss.</strong> 
@@ -265,7 +265,7 @@
       
           <h2>The Precision-Recall tradeoff</h2>
           <p>I plotted the precision-recall graph for the random forest classifier and identified our current point.</p>
-          <img src="images/customer_churn/PRecall.png"/>
+        <p>  <img src="images/customer_churn/PRecall.png"/>  </p> 
           <p>Improving recall required sacrificing some precision. I wrote a small function to obtain at least <b>83%</b> recall:</p>
       
       <pre><code># Calculate the recall and precision at DEFAULT setting
@@ -289,17 +289,17 @@
       
           <p>But which features are the best predictors?</p>
           <p>As a last step, I wanted to see which factors contribute the most to the prediction of customer churn. It turned out the <b>total day usage</b> was the top predictor of churn, followed by <b>number of customer service calls</b>.</p>
-          <img src="images/customer_churn/FeatureImp.png"/>
+
+         <p> <img src="images/customer_churn/FeatureImp.png"/>  </p> 
       
 
-
-          </div>
+          
         </div>
 
       </div>
-    </section><!-- End Portfolio Details Section -->
+    </section>
+    <!-- End Portfolio Details Section -->
 
-  </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
   <footer>
@@ -307,7 +307,7 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="copyright-box">
-            <p class="copyright">&copy; Copyright <strong>DevFolio</strong>. All Rights Reserved</p>
+            <p class="copyright">&copy;  All Rights Reserved</p>
             <div class="credits">
               <!--
               All the links in the footer should remain intact.
@@ -315,7 +315,7 @@
               Licensing information: https://bootstrapmade.com/license/
               Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=DevFolio
             -->
-              Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+              Design credit to <a href="https://bootstrapmade.com/" target="_blank"> BootstrapMade</a>
             </div>
           </div>
         </div>
@@ -337,6 +337,6 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
-</body>
+  </body>
 
 </html>

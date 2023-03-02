@@ -115,15 +115,15 @@
 					<div class="swiper-wrapper align-items-center">
 	  
 					  <div class="swiper-slide">
-						<img src="assets/img/portfolio-details-1.jpg" alt="">
+						<img src="images/gear.jpg" alt="">
 					  </div>
 	  
 					  <div class="swiper-slide">
-						<img src="assets/img/portfolio-details-2.jpg" alt="">
+						<img src="images/gearbox/final_data.png" alt="">
 					  </div>
 	  
 					  <div class="swiper-slide">
-						<img src="assets/img/portfolio-details-3.jpg" alt="">
+						<img src="images/gearbox/confusion_labels.png" alt="">
 					  </div>
 	  
 					</div>
@@ -154,31 +154,31 @@
 					<p>Machine learning can be used to predict tooth breakage issues in gearboxes by analyzing the vibration data collected from the gearbox during operation. </p>
 					
 					<h2> Data and Approach </h2>
-					<p>I used a vibration dataset recorded using a diagnostic simulator in healthy and broken tooth conditions. The data is available at National Renewable Energy Laboratory webpage <a href="https://data.openei.org/submissions/623" target="_blank">https://data.openei.org/submissions/623</a>.</p>
+					<p>I used a vibration dataset recorded using a diagnostic simulator in healthy and broken tooth conditions. The data is available at National Renewable Energy Laboratory webpage <a href="https://data.openei.org/submissions/623" target="_blank">https://data.openei.org/submissions/623</a>. </p>
 
-					<img src="images/gearbox/simulator.png" alt=""/> 
+					<p> <img src="images/gearbox/simulator.png" alt=""/> </p> 
 					
 					<p>There are 20 files in total (10 for each condition) containing data from 4 sensors (a1 through a4) for a load ranging from 0% to 90%. Each file contains roughly 50-60 min of data with on average 100,000 observations at 30Hz. 
 					When combined all files, there are a total of 2,021,118 observations. In the state column 'b' stands for broken tooth, 'h' stands for healthy. </p>
 
-					<img src="images/gearbox/data.png" alt=""/> 
+					<p> <img src="images/gearbox/data.png" alt=""/> </p> 
 
 
 					<h2> Data Analysis </h2>
 					<p>To analyze this dataset, I combined the reading from all four sensors into a single column using <strong>pandas</strong> <code>melt</code> function, tagged with the <code>sensor</code>, <code>load</code> and <code>state</code> of the gearbox. This facilitates plotting of data for each sensor systematically in Python. </p>
 					<p>First, I started with visual inspection of sensor readings for healthy and broken gearboxes at different loads. When plotted raw values side by side, the differences were not perceptible with the naked eye. </p>
 
-					<img src="images/gearbox/visual1.png" alt=""/> 
+					<p> <img src="images/gearbox/visual1.png" alt=""/> </p> 
 					
 					<p>For a more comprehensive visual analysis, I used <strong>seaborn</strong> 'violin' and 'boxen' plots to show the distribution of sensor readings and compare like for like between the healthy and broken gearboxes for the same <code>load</code> and <code>sensor</code>. 
 					Each column is a different sensor, each row is increasing load. Each plot shows the distribution of reading values between the 'healthy' and 'broken' gearbox </p>
 					
-					<img src="images/gearbox/violin.png" alt=""/> 
+					<p> <img src="images/gearbox/violin.png" alt=""/> </p> 
 					
 					<p>Apparently, there is a perceptible difference between 'healthy' and 'broken' gearboxes on sensors 'a1'  and 'a2' , especially as the load increases. The differences in sensors 'a3' and 'a4' don't appear to be significant. 
 
 					Finally, I list the overall mean and standard deviation from all four sensors separated by their health. Here, unlike violin plots, I observed a clear difference between healthy and broken signal at sensors 'a1' and 'a3'.</p>
-					<img src="images/gearbox/stdTable.png" alt=""/> 
+					<p> <img src="images/gearbox/stdTable.png" alt=""/> </p> 
 					
 					<h2>Data manipulation and feature engineering</h2>
 					<p>As observed in the previous section, statistics describing the spread of data may differentiate between gearboxes. In this section, I created the features which will be input to the machine learning model for learning.</p> 
@@ -193,7 +193,7 @@
 
 					<p>Finally, I created a dictionary of these statistics along with the corresponding values of 'load' and 'sensor' columns. The dictionary is appended to a list 'data'. I then assigned <strong>a binary label of 1 if the 'state' column value is 'broken'</strong> and a label of 0 otherwise.</p>
 
-					<img src="images/gearbox/final_data.png" />
+					<p> <img src="images/gearbox/final_data.png" /> </p>
 
 					<h2>Results</h2>
 					<p>I used the <b>TPOT Automated Machine Learning</b> tool to find the best classifier to differentiate the gearboxes. The<b><code>TPOTClassifier</code></b> searches over a broad range of supervised classification algorithms, transformers, and their parameters.</p>
@@ -221,27 +221,58 @@ Best accuracy score: 79.98%
 </pre>
 
 					<p>This is a meta estimator that fits a number of randomized decision trees (a.k.a. extra-trees) on various sub-samples of the dataset and uses averaging to improve the predictive accuracy and control over-fitting. I further calculated the confusion matrix and associated metrics:</p>
-					<img src="images/gearbox/confusion_matrix.png" />
+					<p> <img src="images/gearbox/confusion_matrix.png" />
 
-					<p>Out of 4836 test examples, the majority of healthy and broken gearboxes (true negatives and true positives respectively) are correctly predicted. At 495 occasions, the model predicted the gearbox to be faulty while it actually fine (false positive). Similarly, the model missed to capture a faulty gearbox at 473 occasions (false negative). Overall, the precision, recall and f1-scores of the model were all 80%.</p>
+					<p>Out of 4836 test examples, the majority of healthy and broken gearboxes (true negatives and true positives respectively) are correctly predicted. At 495 occasions, the model predicted the gearbox to be faulty while it actually fine (false positive). Similarly, the model missed to capture a faulty gearbox at 473 occasions (false negative). </p>
 
-					<img src="images/gearbox/class_report.png" />
+					<p> <img src="images/gearbox/class_report.png" />
+					
+				
+				<p> Overall, the precision, recall and f1-scores of the model were all 80%. </p>
 
+				</div>
 
-
-
-<hr/> 
-
-</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
-	</body>
-</html>
+			</div>
+		  </section>
+		  <!-- End Portfolio Details Section -->
+	  
+	  
+		<!-- ======= Footer ======= -->
+		<footer>
+		  <div class="container">
+			<div class="row">
+			  <div class="col-sm-12">
+				<div class="copyright-box">
+				  <p class="copyright">&copy;  All Rights Reserved</p>
+				  <div class="credits">
+					<!--
+					All the links in the footer should remain intact.
+					You can delete the links only if you purchased the pro version.
+					Licensing information: https://bootstrapmade.com/license/
+					Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=DevFolio
+				  -->
+					Design credit to <a href="https://bootstrapmade.com/" target="_blank"> BootstrapMade</a>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</footer><!-- End  Footer -->
+	  
+		<div id="preloader"></div>
+		<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+	  
+		<!-- Vendor JS Files -->
+		<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+		<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+		<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+		<script src="assets/vendor/typed.js/typed.min.js"></script>
+		<script src="assets/vendor/php-email-form/validate.js"></script>
+	  
+		<!-- Template Main JS File -->
+		<script src="assets/js/main.js"></script>
+	  
+		</body>
+	  
+	  </html>
