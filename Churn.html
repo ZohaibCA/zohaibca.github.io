@@ -109,12 +109,13 @@
                 </div>
 
                 <div class="swiper-slide">
-                  <img src="images/customer_churn/PRecall.png" alt="">
+                  <img src="images/customer_churn/distrib_daycharge.png" alt="">
                 </div>
 
                 <div class="swiper-slide">
-                  <img src="images/customer_churn/byarea.png" alt="">
+                  <img src="images/customer_churn/PRecall.png" alt="">
                 </div>
+
 
               </div>
               <div class="swiper-pagination"></div>
@@ -129,7 +130,7 @@
                 <li><strong>Tags</strong>: Classification, Precision, Recall  </li>
                 <li><strong>Link to dataset </strong>:<a href="https://raw.githubusercontent.com/LasalJayawardena/ML-Projects/main/Telecom_Churn_Prediction/telecom_churn.csv" target="_blank">  <em> Click here </em> </a> </li>
 
-                <p class="pt-3"><a class="btn btn-primary btn js-scroll px-4" href="https://github.com/zohaibdr/Portfolio/tree/master/Calif-Housing-Pred" target="_blank" role="button">  See Code on Github  </a></p> 
+                <p class="pt-3"><a class="btn btn-primary btn js-scroll px-4" href="https://github.com/zohaibdr/Portfolio/tree/master/Customer%20churn" target="_blank" role="button">  See Code on Github  </a></p> 
 
               </ul>
             </div>
@@ -140,15 +141,20 @@
 
           <!-- Detailed report starts here  -->
 
+          <div class="col-lg-10"> 
             <h1>Context</h1>
+
             <p>Predicting churn rate is crucial for these companies because the cost of retaining an existing customer is far less than acquiring a new one. <br/> <strong>Machine learning</strong> helps companies analyze customer churn rate based on several factors such as services subscribed by customers, tenure rate, and the usage. </p>
-      <p><strong>The end goal</strong> of this project is to identify customers who are likely to leave a company, so that the company can take proactive steps to retain those customers. </p>
+
+            <p><strong>The goal</strong> of this project is to compare simple ML models to predict customers who are likely to leave a company. 
+            
+            </p>
 
             <h1><strong>Data I used:</strong></h1>
             <ol>
-              <li>Customers who left within the last month – the column is called ‘class’</li>
-              <li>Services that each customer has signed up for – international plan, voice mail plan, etc.</li>
-              <li>Customer account information and usage – how long they’ve been a customer, how much did they use each service</li>
+              <li>Customers who left within the last month - the column is called 'class'</li>
+              <li>Services that each customer has signed up for - international plan, voice mail plan, etc.</li>
+              <li>Customer account information and usage - how long they've been a customer, how much did they use each service</li>
               <li>Their postal code</li>
               <li>And finally, the number of customer service calls they made during this period</li>
             </ol>
@@ -167,14 +173,15 @@
             
             <h3>Answer to Q1:</h3>
             <ul>
-              <li>Churn data is typically imbalanced where the minority class (the number of customers who churn) is often much smaller than the number of customers who do not churn. Here the class distribution is about 1:7 which is significant but not severe.
+              <li>Churn data is typically imbalanced where the minority class (the number of customers who churn) is often much smaller than the number of customers who do not churn. Here the class distribution is about 1:7 which is significant. I will adjust this in the 'class_weight' hyperparameter during modeling. 
+
               </li>
               
              <p> <img src="images/customer_churn/classes.png" alt="">  </p> 
             
             
-              <li> Any random guess would give us the accuracy of about 86% hence <strong>Accuracy would not the right metric to evaluate the model.</strong> 
-              Plus I used <strong>stratified sampling</strong> in the <em> 'train_test_split' </em> to have fair distribution of minority class in both subsets of data. 
+              <li> Any random guess would give us the accuracy of about 86% hence <strong>accuracy would not the right metric to evaluate the model.</strong> 
+              Plus I will use <strong>stratified sampling</strong> in the <em> 'train_test_split' </em> to have fair distribution of minority class in both subsets of data. 
       
               </li>
             </ul>
@@ -183,18 +190,21 @@
             <h3>Answer to Q2:</h3>
             
             <ul>
-              <li>There were 3 unique area codes (415, 408, 510). These were almost equally distributed in both classes. </li>
+              <li>There were 3 unique area codes (415, 408, 510). These were almost equally distributed in both classes so the area is not likely to be a discrimintor. </li>
+              <br> 
+
             <p>  <img src="images/customer_churn/byarea.png" alt="">  </p> 
               </ul>
               
             
               <h3>Answer to Q3:</h3>
-            <ul>
-              <li> Removed the 'phone_number' column. </li>
+
+              There are some redundant columns which need to be removed such as 'phone_number'. Moreover, 
+           
               <li> Since total day minutes and charges are highly correlated (more minutes used mean more charge), I removed total minutes column for all categories (day, evening, etc).</li>
-            </ul>
             
             
+            <br> 
             
           <h2> Models</h2>
           <p> I implemented the following 5 classification algorithms using the sci-kit learn library: </p>
@@ -205,7 +215,7 @@
             <li><strong>Random Forest Classifier</strong></li>
             <li><strong>Naïve Bayes</strong></li>
           </ol>
-          <p>I compared them based on evaluation metrics such as <em>precision</em>, <em>recall</em>, and <em>F1-scores</em>, as well as <em>ROC curve</em> and <em>AUC scores</em>. These results are based on the test set of 1500 values (1280 + 220). The reported values are for positive class, wherever applicable.</p>
+          <p>I compared them based on evaluation metrics such as <em>precision</em>, <em>recall</em>, and <em>F1-scores</em>, as well as <em>ROC curve</em> and <em>AUC scores</em>. These results are based on the test set of 1500 values (1280 + 220). </p>
       
       
       
@@ -219,9 +229,9 @@
               </tr>
               <tr>
                 <td>Logistic regression</td>
-                <td>60</td>
-                <td>19</td>
-                <td>28</td>
+                <td>73</td>
+                <td>36</td>
+                <td>48</td>
                 <td>0.81</td>
               </tr>
               <tr>
@@ -233,9 +243,9 @@
               </tr>
               <tr style="background-color: #8bf163;">
                 <td>Random Forest</td>
-                <td>95</td>
-                <td>70</td>
-                <td>80</td>
+                <td>97</td>
+                <td>65</td>
+                <td>78</td>
                 <td>0.91</td>
               </tr>
               <tr>
@@ -254,21 +264,25 @@
               </tr>
             </table>
               
+            <br> 
+
           <h2>Best classifier and interpretation of results</h2>
+
           <p>The Random Forest classifier came out to be the best classifier as evident from the table and the follwoing ROC curve.</p>
           <p> <img src="images/customer_churn/ROC.png"/>  </p>
           <p>For the chosen classifier, the <strong>precision</strong> is 95%. This indicates that out of all the customers that the model predicted to leave, 95% of them actually did. This is good precision. The company can target those customers to retain those customers. </p>
             
           <p> Similarly, of all the customers who did leave, the model predicted the outcome with <b>70%</b> accuracy (<strong>recall</strong>). <strong>This means it is missing out 30% of leavers, which could be a big loss in terms of loss.</strong> 
       </p>
-      <blockquote> 			
-        We need to improve the recall score for our classifier for which analysis precision-recall tradeoff.</blockquote>
+
+       <p> We need to improve the recall score for our classifier for which analysis precision-recall tradeoff. </p> 
       
-      
+        <br>  
+
           <h2>The Precision-Recall tradeoff</h2>
           <p>I plotted the precision-recall graph for the random forest classifier and identified our current point.</p>
         <p>  <img src="images/customer_churn/PRecall.png"/>  </p> 
-          <p>Improving recall required sacrificing some precision. I wrote a small function to obtain at least <b>83%</b> recall:</p>
+          <p>Improving recall required sacrificing some precision. I wrote a small function to obtain at least <b>82%</b> recall:</p>
       
       <pre><code># Calculate the recall and precision at DEFAULT setting
       recall = recall_score(y_test, y_pred)
@@ -292,9 +306,14 @@
           <p>But which features are the best predictors?</p>
           <p>As a last step, I wanted to see which factors contribute the most to the prediction of customer churn. It turned out the <b>total day usage</b> was the top predictor of churn, followed by <b>number of customer service calls</b>.</p>
 
-         <p> <img src="images/customer_churn/FeatureImp.png"/>  </p> 
+         <p> <img src="images/customer_churn/FeatImp.png"/>  </p> 
       
+        <h2> Further improvement </h2>
 
+        The prediction could be further improved using advanced boosting algorithms like the ones used in my other projects (<a href="https://zohaibdr.github.io/Gear.html" target="_blank">   here  </a> and 
+        <a href="https://zohaibdr.github.io/Housing.html" target="_blank">   here  </a>). 
+
+        </div>
           
         </div>
 
@@ -303,6 +322,14 @@
     <!-- End Portfolio Details Section -->
 
 
+        <!-- adding some space between the end of report and the footer  -->
+        <div class="col-lg-8">
+          <br>
+          <br>
+          <br> 
+        </div>
+
+        
   <!-- ======= Footer ======= -->
   <footer>
     <div class="container">

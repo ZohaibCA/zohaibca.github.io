@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Project: Retail shopping </title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+    <style>
+      img {
+        max-height: 600px;
+        width: auto;
+        display: block;
+        /* remove extra space below image */
+      }
+    </style>
+
+
+</head>
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TSB82NSVFW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TSB82NSVFW');
+</script>
+
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <!-- <h1 class="logo"><a href="index.html">DevFolio</a></h1> -->
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
+
+
+			<nav id="navbar" class="navbar">
+			  <ul>
+				<li><a class="nav-link scrollto active" href="index.html">Home</a></li>
+				<li><a class="nav-link scrollto" href="index.html#about">About</a></li>
+				<!-- <li><a class="nav-link scrollto" href="index.html#services">Services</a></li> -->
+				<li><a class="nav-link scrollto " href="index.html#portfolio">Portfolio</a></li>
+				<!-- <li><a class="nav-link scrollto " href="index.html#blog">Blog</a></li> -->
+				
+				<li><a class="nav-link scrollto" href="index.html#contact">Contact</a></li>
+			  </ul>
+			  <i class="bi bi-list mobile-nav-toggle"></i>
+			</nav><!-- .navbar -->
+
+      <!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <div class="hero hero-single route bg-image" style="background-image: url(assets/img/overlay-bg.jpg)">
+    <div class="overlay-mf"></div>
+    <div class="hero-content display-table">
+      <div class="table-cell">
+        <div class="container">
+          <h2 class="hero-title mb-4">Retail Shopping Intention Modeling</h2>
+          <ol class="breadcrumb d-flex justify-content-center">
+            <li class="breadcrumb-item">
+              <a href="index.html#work">Portfolio </a>
+            </li>
+            <li class="breadcrumb-item active">Retail Shopping Intention Modeling</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main id="main">
+
+    <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-8">
+            <div class="portfolio-details-slider swiper">
+              <div class="swiper-wrapper align-items-center">
+
+                <div class="swiper-slide">
+                  <img src="images/shoppingOnline.jpg" alt="" >
+                </div>
+
+                <div class="swiper-slide">
+                  <img src="images/shopping/EDA pics/associations.png" alt="">
+                </div>
+
+                <div class="swiper-slide">
+                  <img src="images/shopping/decision_tree.png" alt="" >
+                </div>
+
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="portfolio-info">
+              <h3>Project information</h3>
+              <ul>
+                <li><strong>Category</strong>: Sales, Retail, e-Commerce </li>
+                <li><strong>Tags</strong>: Classification, Ensemble methods, Boosting </li>
+                <li><strong>Link to dataset </strong>:<a>  <em> Proprietary Data </em> </a> </li>
+
+                <p class="pt-3"><a class="btn btn-primary btn js-scroll px-4" href="https://github.com/zohaibdr/Portfolio/tree/master/Shopping%20intention" target="_blank" role="button">  See Code on Github  </a></p> 
+
+              </ul>
+            </div>
+            <div class="portfolio-description">
+             
+            </div>
+          </div>
+
+          <!-- Detailed report starts here  -->
+          <div class="col-lg-10">
+            <h1><strong>Context</strong></h1>
+            <p>Ecommerce data contains information relating to the visitors and performance of an online shop. It's mostly used by marketers in understanding consumer behavior and enhancing conversion funnels.
+              The objective of this project is to find out the features which have the most information context to differentiate the positive class and negative class and build a model <strong>to predict whether a customer will buy a product or not.</strong>
+               </p>
+
+            <h1><strong>Data I used:</strong></h1>
+            
+            <p>This is a properietary dataset and is not available publically. The data contains information on web sessions of an online merchant.</p>
+            <p> <img src="images/shopping/data.png" alt=""> </p>
+            <h4>The first 6 features</h4>
+            <ul>
+              <li><strong>"Administrative", "Administrative Duration", "Informational", "Informational Duration", "Product Related" and "Product Related Duration"</strong>: These represent the number of different types of pages visited by the visitor in that session and total time spent in each of these page categories. The values of these features are derived from the URL information of the pages visited by the user and updated in real-time when a user takes an action, e.g. moving from one page to another.</li>
+            </ul>
+            <h4>The next 3 features</h4>
+            <ul>
+              <li><strong>"Bounce Rate", "Exit Rate" and "Page Value"</strong>: These features represent the metrics measured by "Google Analytics" for each page in the e-commerce site.
+              <ul>
+                <li><strong>Bounce Rate</strong> for a web page refers to the percentage of visitors who enter the site from that page and then leave ("bounce") without triggering any other requests to the analytics server during that session.</li>
+                <li><strong>Exit Rate</strong> for a specific web page is calculated as for all pageviews to the page, the percentage that was the last in the session.</li>
+              </ul>
+              </li>
+              The dataset has average bounce rates and exit rates for a page customer landed on.
+            </ul>
+            <h4> Other features</h4>
+            <ul>
+              <li><strong>Special Day:</strong> The "Special Day" feature indicates the closeness of the site visiting time to a specific special day (e.g. Mother's Day, Valentine's Day) in which the sessions are more likely to be finalized with the transaction. The value of this attribute is determined by considering the dynamics of e-commerce such as the duration between the order date and delivery date. For example, for Valentine's day, this value takes a nonzero value between February 2 and February 12, zero before and after this date unless it is close to another special day, and its maximum value of 1 on February 8.</li>
+              <li>The dataset also includes the operating system, browser, region, traffic type.</li>
+              <li><strong>VisitorType:</strong> returning visitor, new visitor, or other types of customer.</li>
+              <li><strong>Weekend:</strong> a Boolean value indicating whether the date of the visit is weekend or not.</li>
+              <li><strong>Month:</strong> month of the year.</li>
+            </ul>
+            <h4>The target variable</h4>
+            <p>Finally, the <b>'Revenue'</b> variable indicates whether the customer made a purchase or not (TRUE/FALSE).</p>
+      
+          <h2>EDA and Insights </h2>
+          I explored the data using several tools in Python and generated several insights. 
+          The following slideshow and the bullet points summarize key points: 
+          <br> 
+
+          <div class="col-lg-8">
+            <div class="portfolio-details-slider swiper">
+              <div class="swiper-wrapper align-items-center" , max-height: 100px; >
+
+                
+                <div class="swiper-slide">
+                  <img src="images/shopping/EDA pics/1.png" alt="">
+                </div>
+
+                <div class="swiper-slide">
+                  <img src="images/shopping/EDA pics/revenue.png" alt="">
+                </div>
+
+                <div class="swiper-slide">
+                  <img src="images/shopping/EDA pics/weekend.png" >
+                </div>
+
+                <div class="swiper-slide">
+                  <img src="images/shopping/EDA pics/speciaDay.png" >
+                </div>
+
+                
+                <div class="swiper-slide">
+                  <img src="images/shopping/EDA pics/monthRevenue.png" >
+                </div>
+
+                <div class="swiper-slide">
+                  <img src="images/shopping/EDA pics/visitorType2.png" alt="">
+                </div>
+
+                
+                <div class="swiper-slide">
+                  <img src="images/shopping/EDA pics/adminDuration.png" alt="">
+                </div>
+
+                <div class="swiper-slide">
+                  <img src="images/shopping/EDA pics/InforDuration.png" alt="">
+                </div>
+
+                <div class="swiper-slide">
+                  <img src="images/shopping/EDA pics/prodDuration.png" alt="">
+                </div>
+
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+
+          <ul>
+            <li>Most of the data-types are either <strong>int64</strong> or <strong>float64</strong>.</li>
+            <li>2 columns - 'Month' and 'VisitorType' have data-types as an <strong>object</strong>, 
+              this means we need to convert these into suitable data-type before we feed our data into the model.
+            The last two columns: "Weekend" and "Revenue" are  <strong>boolean</strong>.</li>
+            <li>Several variables have significant number of zero values</li>
+
+            <li>Most of the variables are right-skewed.</li>
+            <li>75% of customers stay less than 93 seconds on Administrative pages in a session.</li>
+            <li>Very few customers have visited the informational page.</li>
+            <li>From those who do, on average, customers have spent 35 seconds on the informational page.</li>
+            <li>On average customers have spent 1194 seconds (~20 minutes) on the 'ProductRelated' page 
+              which is way more than the administrative page and informational page.</li>
+            <li> <strong> The Median duration for product pages is 599 seconds (~10 minutes). </strong> 
+              75% customers spend less than 1464 seconds (~24 mintues).</li>
+            <li> <strong>  Overall, only about 15% of all visitors make a purchase. </strong></li>
+            <li>On average the bounce rate of a webpage is 0.022.</li>
+            <li>On average the bounce rate of a webpage is 0.043.</li>
+          </ul>
+
+          <h3>Analysis on Categorical columns</h3>
+
+          <ul>
+            <li>Data is of 10 months January and April's data is not available with us.</li>
+            
+            <li> <strong> Over 85% of visitors are returning visitors, 
+              only under 14% are new visitors which is good for the business </strong></li>
+            <li>Most number of visitors visited in <strong> May (27.3%) </strong>, followed by November (24.3%) and March (15.5%).</li>
+            <li> <strong> The conversion rate is the highest in November where 25% of visitors make a purchase. </strong></li>
+            <li>Most traffic on the website is generally on the weekdays and on days <b> NOT</b> designated as SpecialDays (90%).</li>
+            <li>Website is only able to generate revenue from a small portion of customers (15.6%). </li>
+            <li> <b> Despite being smaller in proportion, new visitors are more likely to make a purchase (25%) than returning visitors (14%).</b> </li>
+            <li> Most purchases are made on the weekdays (77%). Weekends account for only 23% of all purchases.</li>
+            <li>However, customers are more likely to make a purchase on weekends (17%) than on weekdays (15%).</li>
+
+            <li> 39% of the visits are from customers in region 1. 32% of the traffic is of type 2. 
+              Description of these categories is not available so it is difficult to comment on it.</li>
+          </ul>
+
+
+
+            <h3>Correlation/ Association analysis</h3>
+
+            The following image is an associations graph. Squares represent categorical associations and report the uncertainity coefficient.  The circles represent numerical-numerical correlations. 
+            The trivial diagonal is left empty, for clarity. 
+            <br>
+
+            <p>  <img src="images/shopping/EDA pics/associations.png" alt=""> </p>
+
+            <ul>
+              <li>'<b>Revenue</b>' shows the highest correlation with '<b>PageValues</b>' because 'PageValues' takes in account the pages visited before reaching the 'transaction' page.</li>
+              <li>'Administrative', 'Informational' and 'ProductRelated' pages are correlated with the Administrative, Informational and ProductRelated time durations spent on them which is normal.</li>
+              <li>'BounceRates' and 'ExitRates' are very highly correlated with each other. </li>
+            </ul>
+
+            <h1>Prediction</h1>
+            Prediction 
+            
+
+            <h2>Data Preparation</h2>
+
+            <p>The accuracy and effectiveness of the prediction model heavily depend on the quality and relevance of the data used. Following actions were taken to improve data quality:</p>
+            <ul>
+              <li>'PageValues' column has information related to the transaction activity of a customer and would create a bias in model if used in prediction. So, I dropped it.</li>
+              <li>I also converted categorical variables into dummy or indicator variables using <code>pd.get_dummies()</code>. These include 'Month', 'VisitorType', 'Weekend', 'Region', 'Browser', 'OperatingSystems' and 'SpecialDay'.</li>
+            </ul>
+
+            <h2>Model evaluation criterion</h2>
+
+            <p>It is important to decide which metric among precision, recall and f1-score to use for evaluation of results.</p>
+            <p>There are 2 scenarios here:</p>
+            <ol>
+              <li><b>Loss of resources:</b> Where the model predicts that a customer will contribute to the revenue but in reality does not [False Positive].</li>
+              <li><b>Loss of opportunity:</b> Where the model predicts a customer will <em>not</em> contribute to revenue but in reality, the customer would have [False Negative].</li>
+            </ol>
+
+            <p><strong>Which case is more important?</strong></p>
+
+            <p>I consider both of these as important considerations. So I maximized <b>F1-score</b> for my classifier.</p>
+
+            <h2>Results</h2>
+
+            <p>I first built a decision tree for easy interpretation of results. Since the classes were imbalanced, I passed a dictionary to specify the weight of each class in the <code>'class_weight' </code> parameter. I further optimized the tree depth, maximum features and other hyperparameters using a <code> 'GridSearchCV'</code> pipeline to avoid overfitting. F1-score was provided as the scoring criterion.</p>
+            <p>The final tree is shown in the figure below:</p>
+
+           <p>  <img src="images/shopping/decision_tree.png" alt="" > </p>
+
+            <p>The classifier provided an f1-score of around 0.4 for both training and testing sets. The precision was around 0.7 which means that 70% of the visitors which the model tagged as buyers did actually buy something.</p>
+            <h2><b> Recommendations based on decision tree rules:</b></h2>
+
+            <ul>
+              <li>According to the decision tree model:
+                <ul>
+                  <li>If a customer lands on a page with an exit rate greater than 0.041 there's a very high chance the customer will not be making a purchase.</li>
+                  <li>If a customer lands on a page with an exit rate less than 0.041 and spends more than 8 minutes on a product related page then there is a high chance that the customer is going to buy something and contribute to the revenue.</li>
+                </ul>
+              </li>
+              
+              <li> It is observed that most of the traffic that the website sees is on the non-special days, while there is little to none traffic and revenue sessions on special days - the website should initiate schemes/offers on the special days to attract more customers on such days.</li>
+
+              <li> Better resource management - Regular days (non-weekend) days is when the website sees the most traffic, resources such as customer care services can be allocated more for these days. </li>
+
+            </ul>
+
+              <p> </p>
+
+              <h3> Further imporovements </h3>
+              <p> I further improved these results using <b>ensemble and boosting methods</b> similar to what I did in other projects (e.g. <a href="https://zohaibdr.github.io/Gear.html" target="_blank">   here  </a>). The implementation is available in the jupyter notebook (link on top of the page). 
+              For example, the <b>XGBoost classifier</b> also indicated the duration on product page and exit rates as top features for the prediction. </p> 
+              <p>  <img src="images/shopping/feature_imp.png" alt="" > </p>
+
+              <b>To conclude, the shop should employ predictive modeling to identify potential customers while they are browsing the website and offer limited-time coupons/discounts on a real-time basis to those customers.</b>  This can also be employed for the customers in months like March, May, November, and December, as in those months, the traffic is higher so these months have potential buying users.
+
+            
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+    <!-- End Portfolio Details Section -->
+
+    <!-- adding some space between the end of report and the footer  -->
+    <div class="col-lg-8">
+      <br>
+      <br>
+      <br> 
+    </div>
+
+  <!-- ======= Footer ======= -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="copyright-box">
+            <p class="copyright">&copy;  All Rights Reserved</p>
+            <div class="credits">
+              <!--
+              All the links in the footer should remain intact.
+              You can delete the links only if you purchased the pro version.
+              Licensing information: https://bootstrapmade.com/license/
+              Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=DevFolio
+            -->
+              Design credit to <a href="https://bootstrapmade.com/" target="_blank"> BootstrapMade</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer><!-- End  Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/typed.js/typed.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+  </body>
+
+</html>
