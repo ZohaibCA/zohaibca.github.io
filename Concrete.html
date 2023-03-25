@@ -6,7 +6,12 @@
 -->
 <html>
 	<head>
-		<title>Project: Concrete </title>
+
+		<meta charset="utf-8">
+		<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	  
+		<title>Project: Gearbox diagnosis </title>
+
 		<meta content="" name="description">
 		<meta content="" name="keywords">
 	  
@@ -40,7 +45,7 @@
 		}
 		</style>
 
-		
+
 		<style>
 			img{
 				max-width: 90%;  
@@ -51,15 +56,15 @@
 	</head>
 
 	
-		<!-- Google tag (gtag.js) -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-TSB82NSVFW"></script>
-		<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-TSB82NSVFW"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
 
-		gtag('config', 'G-TSB82NSVFW');
-		</script>
+	gtag('config', 'G-TSB82NSVFW');
+	</script>
 
 	
 	<body>
@@ -75,22 +80,23 @@
 	  
 			<nav id="navbar" class="navbar">
 				<ul>
-					<li><a class="nav-link scrollto active" href="index.html">Home</a></li>
-					<li><a class="nav-link scrollto" href="index.html#about">About</a></li>
-					<!-- <li><a class="nav-link scrollto" href="index.html#services">Services</a></li> -->
-					<li><a class="nav-link scrollto " href="index.html#portfolio">Portfolio</a></li>
-					<!-- <li><a class="nav-link scrollto " href="index.html#blog">Blog</a></li> -->
-	
-					<li><a class="nav-link scrollto" href="index.html#contact">Contact</a></li>
+				  <li><a class="nav-link scrollto active" href="index.html">Home</a></li>
+				  <li><a class="nav-link scrollto" href="index.html#about">About</a></li>
+				  <!-- <li><a class="nav-link scrollto" href="index.html#services">Services</a></li> -->
+				  <li><a class="nav-link scrollto " href="index.html#portfolio">Portfolio</a></li>
+				  <!-- <li><a class="nav-link scrollto " href="index.html#blog">Blog</a></li> -->
+				  
+				  <li><a class="nav-link scrollto" href="index.html#contact">Contact</a></li>
 				</ul>
 				<i class="bi bi-list mobile-nav-toggle"></i>
-			</nav><!-- .navbar -->
+			  </nav><!-- .navbar -->
 	  
 	  
 			<!-- .navbar -->
 	  
 		  </div>
-		</header><!-- End Header -->
+		</header>
+		<!-- End Header -->
 	  
 		<div class="hero hero-single route bg-image" style="background-image: url(assets/img/overlay-bg.jpg)">
 		  <div class="overlay-mf"></div>
@@ -221,7 +227,7 @@
 		labels = [1, 2, 3, 4]   
 		DF['Age_bins'] = pd.cut(DF['Age'], bins=bins, labels=labels, right=False)
 </code>
-</pre> -->
+</pre>
 		<!-- - Dont do one-hot encoding. Will lead to multicollinearity.  -->
 
 		<p> I then split the data into training and testing sets to evaluate model's predictive capacity. An <strong>OLS linear regression model</strong> was created using '<strong>statsmodels</strong>' library. </p>
