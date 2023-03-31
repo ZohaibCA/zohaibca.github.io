@@ -189,17 +189,34 @@
 					<p>For a more comprehensive visual analysis, I used <strong>seaborn</strong> 'violin' and 'boxen' plots to show the distribution of sensor readings and compare like for like between the healthy and broken gearboxes for the same <code>load</code> and <code>sensor</code>. 
 					Each column is a different sensor, each row is increasing load. Each plot shows the distribution of reading values between the 'healthy' and 'broken' gearbox </p>
 					
-					<p> <img src="images/gearbox/violin.png" alt=""/> </p> 
 					
-					<p>Apparently, there is a perceptible difference between 'healthy' and 'broken' gearboxes on sensors 'a1'  and 'a2' , especially as the load increases. The differences in sensors 'a3' and 'a4' don't appear to be significant. 
+					<div class="col-lg-10">
+						<div class="portfolio-details-slider swiper">
+						  <div class="swiper-wrapper align-items-center" , max-height: 100px; >
+			
+							
+							<div class="swiper-slide">
+							  <img src="images/gearbox/violin1.png" alt="">
+							</div>
+			
+							<div class="swiper-slide">
+							  <img src="images/gearbox/violin2.png" alt="">
+							</div>
+							<div class="swiper-pagination"></div>
+						</div>
+						</div>
+					</div>
 
-					Finally, I list the overall mean and standard deviation from all four sensors separated by their health. Here, unlike violin plots, I observed a clear difference between healthy and broken signal at sensors 'a1' and 'a3'.</p>
+					<br/>
+					<p> <b>There is a perceptible difference between 'healthy' and 'broken' gearboxes on sensors 'a1'  and 'a2' , especially as the load increases.</b> The differences in sensors 'a3' and 'a4' don't appear to be significant. </p>
+
+					<p> Finally, I list the overall mean and standard deviation from all four sensors separated by their health. Here, unlike violin plots, I observed a clear difference between healthy and broken signal at sensors 'a1' and 'a3'.</p>
 					<p> <img src="images/gearbox/stdTable.png" alt=""/> </p> 
 					
 					<h2>Data manipulation and feature engineering</h2>
-					<p>As observed in the previous section, statistics describing the spread of data may differentiate between gearboxes. In this section, I created the features which will be input to the machine learning model for learning.</p> 
+					<p>As observed in the previous section, statistics describing the spread of data may differentiate between gearboxes. I created the features which will be input to the machine learning model for learning.</p> 
 
-					<p>First, for each unique combination of 'state', 'load', and 'sensor' columns in df_melt, I grouped the corresponding rows using the <code>groupby</code> method. Then, for each group, I split the 'reading' column values into chunks of 500 using <code>numpy.split</code>. For each chunk, I then computed the following statistical measures:</p>
+					<p>First, for each unique combination of 'state', 'load', and 'sensor' columns in <code> df_melt, </code> I grouped the corresponding rows using the <code>groupby</code> method. Then, for each group, I split the 'reading' column values into chunks of 500 using <code>numpy.split</code>. For each chunk, I then computed the following statistical measures:</p>
 					<ul>
 					<li>Mean,</li>
 					<li>Standard deviation,</li>
@@ -207,11 +224,12 @@
 					<li>Skewness</li>
 					</ul>
 
-					<p>Finally, I created a dictionary of these statistics along with the corresponding values of 'load' and 'sensor' columns. The dictionary is appended to a list 'data'. I then assigned <strong>a binary label of 1 if the 'state' column value is 'broken'</strong> and a label of 0 otherwise.</p>
+					<p>Finally, I created a dictionary of these statistics along with the corresponding values of 'load' and 'sensor' columns. The dictionary is appended to a list 'data'. I then assigned <b>a binary label of 1 if the 'state' column value is 'broken' and a label of 0 otherwise. </b> </p>
+					<br/> 
 
 					<p> <img src="images/gearbox/final_data.png" /> </p>
 
-					<h2>Results</h2>
+					<h1>Results</h1>
 					<p>I used the <b>TPOT Automated Machine Learning</b> tool to find the best classifier to differentiate the gearboxes. The<b><code>TPOTClassifier</code></b> searches over a broad range of supervised classification algorithms, transformers, and their parameters.</p>
 
 <pre>
@@ -227,7 +245,7 @@ tpot.export('tpot_gears_pipeline.py')
 </code>
 </pre>
 
-					<p>In about 20 minutes, the best pipeline is found as the <b> <code>ExtraTreesClassifier</code> </b> having an accuracy score of ~80% with the included parameters:</p>
+					<p> In about 20 minutes, the best pipeline is found as the <b> <code> <b>ExtraTreesClassifier</b> </code> </b> having an accuracy score of ~80% with the included parameters: </p>
 <pre> 
 <code>
 Best pipeline: ExtraTreesClassifier(input_matrix, bootstrap=False, criterion=entropy, 
@@ -236,7 +254,8 @@ Best accuracy score: 79.98%
 </code>
 </pre>
 
-					<p>This is a meta estimator that fits a number of randomized decision trees (a.k.a. extra-trees) on various sub-samples of the dataset and uses averaging to improve the predictive accuracy and control over-fitting. I further calculated the confusion matrix and associated metrics:</p>
+					<p>This is a <em> meta estimator</em> that fits a number of randomized decision trees (a.k.a. extra-trees) on various sub-samples of the dataset and uses averaging to improve the predictive accuracy and control over-fitting. I further calculated the confusion matrix and associated metrics:</p>
+					
 					<p> <img src="images/gearbox/confusion_matrix.png" />
 
 					<p>Out of 4836 test examples, the majority of healthy and broken gearboxes (true negatives and true positives respectively) are correctly predicted. At 495 occasions, the model predicted the gearbox to be faulty while it actually fine (false positive). Similarly, the model missed to capture a faulty gearbox at 473 occasions (false negative). </p>
